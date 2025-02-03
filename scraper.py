@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import json
 import sys
 import re
+import argparse
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
 
@@ -73,11 +74,14 @@ def scrape_comments(base_url, filename="comments.json"):
     return extracted_comments
 
 if __name__ == "__main__":
-    action = sys.argv[1] if len(sys.argv) > 1 else None
-    base_url = sys.argv[2] if len(sys.argv) > 2 else None # 从命令行参数获取 base_url
+    parser = argparse.ArgumentParser(description="增量抓取网页评论并保存到 JSON 文件.")
+    parser.add_argument("action", choices=["scrape"], help="指定操作为 'scrape'")
+    parser.add_argument("base_url", type=str, help="指定基础 URL")
+    parser.add_argument("--filename", type=str, default="comments.json", help="指定输出文件名 (默认: comments.json)")
 
-    if action == "scrape" and base_url: # 确保 scrape 操作需要 base_url
-        filename = sys.argv[3] if len(sys.argv) > 3 else "comments.json" # 获取文件名参数，默认为 comments.json
-        scrape_comments(base_url, filename) # 传递 base_url 和 filename
+    args = parser.parse_args()
+
+    if args.action == "scrape" and args.base_url:
+        scrape_comments(args.base_url, args.filename)
     else:
-        print("请指定操作: python scraper.py scrape <base_url> <filename>") # 更新帮助信息
+        print("请指定操作和基础 URL: python scraper.py scrape <base_url> --filename <filename>")

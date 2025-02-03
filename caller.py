@@ -31,7 +31,8 @@ def main():
             if match:
                 thread_id = match.group(1)
                 filename = f"comments_{thread_id}.json"
-                subprocess.run(["python", "scraper.py", "scrape", url, filename])
+                # 修改 subprocess.run 调用以匹配 scraper.py 的参数
+                subprocess.run(["python", "scraper.py", "scrape", url, "--filename", filename])
                 check_missing_ids(filename)
             else:
                 logging.error(f"无法从URL {url} 中提取 thread_id")
