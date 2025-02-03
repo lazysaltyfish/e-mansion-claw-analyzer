@@ -1,18 +1,21 @@
 import json
 import sys
+import logging
+from argparse import ArgumentParser
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 def check_missing_ids(filename):
     """检查评论文件中缺失的 ID。"""
     try:
         with open(filename, "r", encoding="utf-8") as f:
             comments = json.load(f)
     except FileNotFoundError:
-        print(f"错误：文件 {filename} 未找到")
+        logging.error(f"错误：文件 {filename} 未找到")
         return
 
     existing_ids = [int(comment['id']) for comment in comments]
     if not existing_ids:
-        print("文件中没有评论数据")
+        logging.info("文件中没有评论数据")
         return
 
     min_id = min(existing_ids)
@@ -21,15 +24,14 @@ def check_missing_ids(filename):
     missing_ids = [id for id in expected_ids if id not in existing_ids]
 
     if missing_ids:
-        print(f"在 {filename} 文件中发现以下缺失的 ID:")
-        print(missing_ids)
+        logging.info(f"在 {filename} 文件中发现以下缺失的 ID: {missing_ids}")
     else:
-        print(f"在 {filename} 文件中未发现缺失的 ID")
+        logging.info(f"在 {filename} 文件中未发现缺失的 ID")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        filename = sys.argv[1]
-        check_missing_ids(filename)
-    else:
-        print("用法: python check_comments.py <comments_filename>")
+    parser = ArgumentParser(description="检查评论文件中的缺失ID。")
+    parser.add_argument('filename', help="包含评论数据的文件名。")
+
+    args = parser.parse_args()
+    check_missing_ids(args.filename)

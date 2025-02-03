@@ -1,29 +1,40 @@
 import subprocess
 import re
 import sys
+import logging
+import argparse
 
-# 从 check_comments.py 导入 check_missing_ids 函数
 from check_comments import check_missing_ids
 
-# 硬编码的URL列表
-url_list = [
-    "https://www.e-mansion.co.jp/bbs/thread/683455/",
-]
+# 设置日志记录器
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# 遍历处理每个URL
-if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "check_missing":
-        filename = sys.argv[2]
-        check_missing_ids(filename) # 直接调用导入的函数
+def main():
+    parser = argparse.ArgumentParser(description="处理URL并检查评论中的缺失ID。")
+    parser.add_argument('--check-missing', action='store_true', help="检查给定文件中的缺失ID。")
+    parser.add_argument('filename', nargs='?', default=None, help="检查缺失ID的文件名。")
+
+    args = parser.parse_args()
+    url_list = [
+        "https://www.e-mansion.co.jp/bbs/thread/683455/",
+    ]
+
+    if args.check_missing:
+        if args.filename is None:
+            logging.error("需要指定文件名以检查缺失ID。")
+            sys.exit(1)
+        check_missing_ids(args.filename)
     else:
         for url in url_list:
-            print(f"正在处理URL: {url}")
-            # 从 url 中提取 thread_id
+            logging.info(f"正在处理URL: {url}")
             match = re.search(r'/thread/(\d+)/', url)
             if match:
                 thread_id = match.group(1)
                 filename = f"comments_{thread_id}.json"
-                subprocess.run(["python", "scraper.py", "scrape", url, filename]) # 将文件名传递给 scraper.py
-                check_missing_ids(filename) # 在 scraper 完成后检查缺失的 ID
+                subprocess.run(["python", "scraper.py", "scrape", url, filename])
+                check_missing_ids(filename)
             else:
-                print(f"无法从URL {url} 中提取 thread_id")
+                logging.error(f"无法从URL {url} 中提取 thread_id")
+
+if __name__ == "__main__":
+    main()
