@@ -1,5 +1,4 @@
 import json
-import sys
 import logging
 from argparse import ArgumentParser
 
