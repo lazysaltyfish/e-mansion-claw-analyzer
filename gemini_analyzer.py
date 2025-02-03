@@ -45,7 +45,6 @@ def main():
     args = parser.parse_args()
 
     api_key = os.environ['GEMINI_API_KEY']
-    logging.info(f"API Key: {api_key}")
     genai.configure(api_key=api_key)
 
     comments = load_comments(args.input_json)
@@ -77,8 +76,6 @@ def main():
         if result is None:  # 处理 Gemini API 调用失败的情况
             print(f"分析失败: Gemini API 调用返回 None")
             return
-        from pprint import pprint
-        pprint(result)
 
         output_path = f"analysis_{os.path.basename(args.input_json)}"
         with open(output_path, 'w', encoding='utf-8') as f:  # 指定编码为 utf-8
