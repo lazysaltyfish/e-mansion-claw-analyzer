@@ -17,6 +17,11 @@ def main():
     args = parser.parse_args()
     url_list = [
         "https://www.e-mansion.co.jp/bbs/thread/683455/",
+        "https://www.e-mansion.co.jp/bbs/thread/694988/",
+        "https://www.e-mansion.co.jp/bbs/thread/694562/",
+        "https://www.e-mansion.co.jp/bbs/thread/701418/",
+        "https://www.e-mansion.co.jp/bbs/thread/698021/",
+        "https://www.e-mansion.co.jp/bbs/thread/695942/",
     ]
 
     if args.check_missing:
