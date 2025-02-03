@@ -25,7 +25,8 @@ This project aims to help users quickly understand user reviews for specific rea
     ```
 2. **Configure Gemini API Key**:  You need to set the environment variable `GEMINI_API_KEY` to your Gemini API key.
 3. **Run `caller.py`**:
-    * Running `caller.py` directly will process the default URL list, scrape comments, check for missing IDs, and perform analysis.
+    * The URL list is now read from the `urls.txt` file. Ensure that the `urls.txt` file is in the same directory and contains the list of URLs to be processed, with each URL on a new line.
+    * Running `caller.py` directly will read the URL list from the `urls.txt` file, scrape comments, check for missing IDs, and perform analysis.
       ```bash
       python caller.py
       ```

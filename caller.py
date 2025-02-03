@@ -15,14 +15,16 @@ def main():
     parser.add_argument('filename', nargs='?', default=None, help="检查缺失ID的文件名。")
 
     args = parser.parse_args()
-    url_list = [
-        "https://www.e-mansion.co.jp/bbs/thread/683455/",
-        "https://www.e-mansion.co.jp/bbs/thread/694988/",
-        "https://www.e-mansion.co.jp/bbs/thread/694562/",
-        "https://www.e-mansion.co.jp/bbs/thread/701418/",
-        "https://www.e-mansion.co.jp/bbs/thread/698021/",
-        "https://www.e-mansion.co.jp/bbs/thread/695942/",
-    ]
+    url_list = []
+    try:
+        with open("urls.txt", "r") as f:
+            for line in f:
+                url = line.strip()
+                if url:  # 确保URL不为空
+                    url_list.append(url)
+    except FileNotFoundError:
+        logging.error("urls.txt 文件未找到，请确保文件存在并包含URL列表。")
+        sys.exit(1)
 
     if args.check_missing:
         if args.filename is None:

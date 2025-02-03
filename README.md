@@ -25,7 +25,8 @@ e-mansion claw & analyzer 是一个 Python 项目，旨在从e-mansion网站抓�
     ```
 2. **配置 Gemini API 密钥**:  需要设置环境变量 `GEMINI_API_KEY` 为您的 Gemini API 密钥。
 3. **运行 `caller.py`**:
-    * 直接运行 `caller.py` 将处理默认的 URL 列表，抓取评论、检查缺失 ID 并进行分析。
+    * URL 列表现在从 `urls.txt` 文件中读取。确保 `urls.txt` 文件位于同一目录下，并且包含要处理的 URL 列表，每个 URL 占一行。
+    * 直接运行 `caller.py` 将读取 `urls.txt` 文件中的 URL 列表，抓取评论、检查缺失 ID 并进行分析。
       ```bash
       python caller.py
       ```
