@@ -65,9 +65,10 @@ def scrape_comments(base_url, filename="comments.json"):
             continue
 
 
+    extracted_comments.sort(key=lambda x: int(x['id'])) # 根据 id 从小到大排序
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(extracted_comments, f, ensure_ascii=False, indent=4)
-    print(f"所有评论已保存到 {filename} 文件中 (JSON 格式)")
+    print(f"所有评论已保存到 {filename} 文件中 (JSON 格式, id 已排序)")
     print(f"总共抓取到 {len(extracted_comments)} 条评论")
     return extracted_comments
 
