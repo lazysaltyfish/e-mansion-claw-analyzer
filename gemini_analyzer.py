@@ -60,16 +60,43 @@ ANALYSIS_PROMPT = r"""# Role: 房地产评论分析师
 MERGE_PROMPT = """请帮我合并如下JSON文件中的重复项。该文件是一个 JSON 格式的数据,其中`advantages`、`disadvantages`、`price`和`other_information`四个键值下分别对应一个数组。请合并这些数组中的重复项,判断重复的标准是`description`字段内容相同或高度相似,置信度请取平均值。请返回合并后的 JSON 数据。"""
 
 def load_comments(json_path):
+    """
+    加载评论,返回完整的评论对象列表
+    """
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    return [item['text'] for item in data]
+    return data
+
+def format_comments(comments):
+    """
+    格式化评论列表,将id和text合并为字符串,并按id排序
+    """
+    # 确保每个评论都有id和text
+    valid_comments = [
+        comment for comment in comments 
+        if isinstance(comment, dict) and 'id' in comment and 'text' in comment
+    ]
+    
+    # 按id排序
+    sorted_comments = sorted(valid_comments, key=lambda x: x['id'])
+    
+    # 只保留最后3000条评论
+    sorted_comments = sorted_comments[-3000:]
+    
+    # 格式化为"[评论id]:评论内容"
+    formatted_comments = [
+        f"[{comment['id']}]:{comment['text']}"
+        for comment in sorted_comments
+    ]
+    
+    return formatted_comments
 
 async def analyze_comments_async(comments, concurrent=5):
     """
     异步分析评论,支持并发请求
     
     Args:
-        comments: 评论列表
+        comments: 评论列表(包含id和text的字典列表)
         concurrent: 并发请求数量
     
     Returns:
@@ -82,6 +109,9 @@ async def analyze_comments_async(comments, concurrent=5):
     api_key = os.environ['GEMINI_API_KEY']
     genai.configure(api_key=api_key)
 
+    # 格式化评论
+    formatted_comments = format_comments(comments)
+
     # 创建多个并发任务
     logging.info(f"正在启动{concurrent}个并发分析请求...")
     tasks = []
@@ -89,7 +119,7 @@ async def analyze_comments_async(comments, concurrent=5):
         logging.debug(f"创建第{i+1}个分析任务")
         loop = asyncio.get_event_loop()
         with ThreadPoolExecutor() as pool:
-            task = loop.run_in_executor(pool, analyze_comments, comments, ANALYSIS_PROMPT)
+            task = loop.run_in_executor(pool, analyze_comments, formatted_comments, ANALYSIS_PROMPT)
             tasks.append(task)
     
     # 并发执行所有任务
@@ -217,8 +247,6 @@ async def main_async():
     args = parser.parse_args()
 
     comments = load_comments(args.input_json)
-    # 最近的2000条评论
-    comments = comments[-2000:]
 
     try:
         result = await analyze_comments_async(comments, args.concurrent)
