@@ -28,6 +28,7 @@ def scrape_comments(base_url, filename="comments.json"):
         extracted_comments = []
 
     comment_ids = set(comment['id'] for comment in extracted_comments)
+    new_comments_found = False  # 标志是否有新评论
 
     for i in range(1, 10001, 200):
         start = i
@@ -57,6 +58,7 @@ def scrape_comments(base_url, filename="comments.json"):
                 comment_ids.add(comment_id)
                 comment_text = comment_div.find('div', class_='res-item-detail').find('p', itemprop='commentText').text.strip()
                 extracted_comments.append({'id': comment_id, 'text': comment_text})
+                new_comments_found = True  # 标记为找到新评论
 
         except requests.exceptions.HTTPError as e:
             print(f"抓取页面 {page_url} 失败: {e}")
@@ -71,7 +73,7 @@ def scrape_comments(base_url, filename="comments.json"):
         json.dump(extracted_comments, f, ensure_ascii=False, indent=4)
     print(f"所有评论已保存到 {filename} 文件中 (JSON 格式, id 已排序)")
     print(f"总共抓取到 {len(extracted_comments)} 条评论")
-    return extracted_comments
+    return extracted_comments, new_comments_found
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="增量抓取网页评论并保存到 JSON 文件.")

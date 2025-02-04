@@ -35,13 +35,20 @@ def main():
         for url in url_list:
             logging.info(f"正在处理URL: {url}")
             match = re.search(r'/thread/(\d+)/', url)
+            # 导入 scraper.py
+            from scraper import scrape_comments
+            
             if match:
                 thread_id = match.group(1)
                 filename = f"comments_{thread_id}.json"
-                # 修改 subprocess.run 调用以匹配 scraper.py 的参数
-                subprocess.run(["python", "scraper.py", "scrape", url, "--filename", filename])
-                check_missing_ids(filename)
-                subprocess.run(["python", "gemini_analyzer.py", filename])
+                # 直接调用 scrape_comments 函数
+                comments, new_comments_found = scrape_comments(url, filename)
+                if new_comments_found:
+                    logging.info("检测到新评论，正在运行 gemini_analyzer.py")
+                    check_missing_ids(filename)
+                    subprocess.run(["python", "gemini_analyzer.py", filename])
+                else:
+                    logging.info("没有检测到新评论，跳过 gemini_analyzer.py")
             else:
                 logging.error(f"无法从URL {url} 中提取 thread_id")
 
