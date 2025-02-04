@@ -1,6 +1,15 @@
 import pytest
 import json
-from gemini_analyzer import load_comments, extract_json_from_markdown, merge_results, format_comments
+import os
+import shutil
+from datetime import datetime
+from gemini_analyzer import (
+    load_comments, 
+    extract_json_from_markdown, 
+    merge_results, 
+    format_comments,
+    save_error_context
+)
 
 # 用于测试的模拟 JSON 数据
 @pytest.fixture
@@ -8,6 +17,41 @@ def mock_json_data():
     def _mock_json_data(data):
         return json.dumps(data)
     return _mock_json_data
+
+# 清理错误日志目录的fixture
+@pytest.fixture
+def clean_error_logs():
+    error_dir = "error_logs"
+    if os.path.exists(error_dir):
+        shutil.rmtree(error_dir)
+    yield
+    if os.path.exists(error_dir):
+        shutil.rmtree(error_dir)
+
+# 测试错误上下文保存功能
+def test_save_error_context(clean_error_logs):
+    prompt = "Test prompt"
+    comments = ["Test comment 1", "Test comment 2"]
+    error_msg = "Test error message"
+    
+    save_error_context(prompt, comments, error_msg)
+    
+    # 验证错误日志目录是否创建
+    assert os.path.exists("error_logs")
+    
+    # 获取创建的日志文件
+    log_files = os.listdir("error_logs")
+    assert len(log_files) == 1
+    
+    # 读取日志文件内容
+    with open(os.path.join("error_logs", log_files[0]), 'r', encoding='utf-8') as f:
+        error_log = json.load(f)
+    
+    # 验证日志内容
+    assert error_log["prompt"] == prompt
+    assert error_log["comments"] == comments
+    assert error_log["error_message"] == error_msg
+    assert "timestamp" in error_log
 
 # 测试 load_comments 函数在正常情况下的行为
 def test_load_comments_success(tmp_path, mock_json_data):

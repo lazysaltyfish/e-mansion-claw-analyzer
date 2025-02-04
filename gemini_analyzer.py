@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 import google.generativeai as genai
 from google.ai.generativelanguage_v1beta.types import content
 import logging
+from datetime import datetime
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -58,6 +59,29 @@ ANALYSIS_PROMPT = r"""# Role: 房地产评论分析师
 """
 
 MERGE_PROMPT = """请帮我合并如下JSON文件中的重复项。该文件是一个 JSON 格式的数据,其中`advantages`、`disadvantages`、`price`和`other_information`四个键值下分别对应一个数组。请合并这些数组中的重复项,判断重复的标准是`description`字段内容相同或高度相似,置信度请取平均值。请返回合并后的 JSON 数据。"""
+
+def save_error_context(prompt, comments, error_msg):
+    """
+    保存错误上下文到文件
+    """
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    error_dir = "error_logs"
+    os.makedirs(error_dir, exist_ok=True)
+    
+    error_file = os.path.join(error_dir, f"error_context_{timestamp}.json")
+    error_context = {
+        "timestamp": timestamp,
+        "error_message": str(error_msg),
+        "prompt": prompt,
+        "comments": comments
+    }
+    
+    try:
+        with open(error_file, 'w', encoding='utf-8') as f:
+            json.dump(error_context, f, ensure_ascii=False, indent=2)
+        logging.info(f"错误上下文已保存至: {error_file}")
+    except Exception as e:
+        logging.error(f"保存错误上下文时出错: {str(e)}")
 
 def load_comments(json_path):
     """
@@ -123,28 +147,42 @@ async def analyze_comments_async(comments, concurrent=5):
             tasks.append(task)
     
     # 并发执行所有任务
-    results = await asyncio.gather(*tasks)
+    try:
+        results = await asyncio.gather(*tasks)
+    except Exception as e:
+        logging.error(f"并发请求过程中发生错误: {str(e)}")
+        save_error_context(ANALYSIS_PROMPT, formatted_comments, e)
+        raise
     
     # 合并结果
     merged_result = merge_results(results)
     if merged_result is None:
-        logging.error("分析失败: 所有API调用均返回None")
+        error_msg = "分析失败: 所有API调用均返回None"
+        logging.error(error_msg)
+        save_error_context(ANALYSIS_PROMPT, formatted_comments, error_msg)
         return None
 
     # 将合并结果转换为字符串
     merged_json_str = json.dumps(merged_result, ensure_ascii=False)
     
     # 使用同步函数进行最终合并
-    loop = asyncio.get_event_loop()
-    with ThreadPoolExecutor() as pool:
-        final_result = await loop.run_in_executor(pool, analyze_comments, merged_json_str, MERGE_PROMPT)
+    try:
+        loop = asyncio.get_event_loop()
+        with ThreadPoolExecutor() as pool:
+            final_result = await loop.run_in_executor(pool, analyze_comments, merged_json_str, MERGE_PROMPT)
+    except Exception as e:
+        logging.error(f"最终合并请求过程中发生错误: {str(e)}")
+        save_error_context(MERGE_PROMPT, merged_json_str, e)
+        raise
     
     # 解析最终结果
     final_result_json = extract_json_from_markdown(final_result)
     if final_result_json:
         return json.dumps(final_result_json, ensure_ascii=False, indent=2)
     else:
-        logging.error("最终合并失败")
+        error_msg = "最终合并失败"
+        logging.error(error_msg)
+        save_error_context(MERGE_PROMPT, merged_json_str, error_msg)
         return json.dumps(merged_result, ensure_ascii=False, indent=2)
 
 def analyze_comments(comments, prompt):
@@ -168,11 +206,13 @@ def analyze_comments(comments, prompt):
         "comments": comments,
     }
 
-    response = model.generate_content(json.dumps(input_message))
     try:
+        response = model.generate_content(json.dumps(input_message))
         return response.text
-    except AttributeError as e:
-        logging.error(f"Gemini API调用失败: {response} {str(e)}")
+    except Exception as e:
+        error_msg = f"Gemini API调用失败: {str(e)}"
+        logging.error(error_msg)
+        save_error_context(prompt, comments, error_msg)
         return None
 
 def extract_json_from_markdown(markdown_text):
