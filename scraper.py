@@ -15,7 +15,7 @@ logging.basicConfig(
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
 
-def scrape_comments(base_url, filename="comments.json"):
+def scrape_comments(base_url, filename="comments.json", test_mode=False, test_html=""):
     """增量抓取网页评论并保存到 JSON 文件."""
 
     # 从 base_url 中提取楼盘 ID
@@ -50,9 +50,12 @@ def scrape_comments(base_url, filename="comments.json"):
         page_url = f"{base_url}res/{start}-{end}/"
         logging.info(f"正在抓取页面: {page_url}")
         try:
-            response = requests.get(page_url, headers=headers)
-            response.raise_for_status()
-            soup = BeautifulSoup(response.content, 'html.parser')
+            if test_mode:
+                soup = BeautifulSoup(test_html, 'html.parser')
+            else:
+                response = requests.get(page_url, headers=headers)
+                response.raise_for_status()
+                soup = BeautifulSoup(response.content, 'html.parser')
             comments = soup.find_all('li', class_=['normal', 'sage', 'admin']) # 修改选择器,同时匹配 'normal', 'sage' 和 'admin'
             if not comments:
                 logging.info(f"页面 {page_url} 没有评论,停止抓取")
@@ -70,9 +73,13 @@ def scrape_comments(base_url, filename="comments.json"):
 
         except requests.exceptions.HTTPError as e:
             logging.error(f"抓取页面 {page_url} 失败: {e}")
+            extracted_comments = [] # 清空评论列表
+            new_comments_found = False
             continue
         except Exception as e:
             logging.error(f"抓取页面 {page_url} 发生错误: {e}")
+            extracted_comments = [] # 清空评论列表
+            new_comments_found = False
             continue
 
 

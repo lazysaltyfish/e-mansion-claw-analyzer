@@ -2,14 +2,14 @@ import json
 import logging
 from argparse import ArgumentParser
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(message)s')
 def check_missing_ids(filename):
     """检查评论文件中缺失的 ID。"""
     try:
         with open(filename, "r", encoding="utf-8") as f:
             comments = json.load(f)
     except FileNotFoundError:
-        logging.error(f"错误：文件 {filename} 未找到")
+        logging.error(f"错误:文件 {filename} 未找到")
         return
 
     existing_ids = [int(comment['id']) for comment in comments]
@@ -23,9 +23,9 @@ def check_missing_ids(filename):
     missing_ids = [id for id in expected_ids if id not in existing_ids]
 
     if missing_ids:
-        logging.info(f"在 {filename} 文件中发现以下缺失的 ID: {missing_ids}")
+        logging.info(f"发现以下缺失的 ID: {missing_ids}")
     else:
-        logging.info(f"在 {filename} 文件中未发现缺失的 ID")
+        logging.info(f"未发现缺失的 ID")
 
 
 if __name__ == "__main__":
