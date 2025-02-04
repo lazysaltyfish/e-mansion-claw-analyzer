@@ -1,5 +1,6 @@
+import os
 import pytest
-from scraper import scrape_comments
+from src.scraper import scrape_comments
 import requests
 
 # 模拟一个返回示例 HTML 的函数
@@ -42,7 +43,7 @@ def mock_response():
 # 测试 scrape_comments 函数在正常情况下的行为
 def test_scrape_comments_success(monkeypatch, mock_response):
     monkeypatch.setattr("requests.get", mock_response)
-    with open('test_html.html', 'r', encoding='utf-8') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'test_html.html'), 'r', encoding='utf-8') as f:
         html_content = f.read()
     comments, _ = scrape_comments("valid_url", test_mode=True, test_html=html_content)
     assert len(comments) == 20
@@ -53,7 +54,6 @@ def test_scrape_comments_success(monkeypatch, mock_response):
     assert comments[4]['id'] == '10437'
     assert comments[5]['id'] == '10438'
     assert comments[19]['id'] == '10452'
-    import os
     if os.path.exists("comments.json"):
         os.remove("comments.json")
 
@@ -69,9 +69,8 @@ def test_scrape_comments_invalid_url(monkeypatch, mock_response):
 # 测试 scrape_comments 函数在处理分页情况下的行为
 
 def test_scrape_comments_pagination(monkeypatch, mock_response):
-    import os
     monkeypatch.setattr("requests.get", mock_response)
-    with open('test_html.html', 'r', encoding='utf-8') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'test_html.html'), 'r', encoding='utf-8') as f:
         html_content = f.read()
     comments, _ = scrape_comments("valid_url", test_mode=True, test_html=html_content)
     assert len(comments) == 20
@@ -97,7 +96,7 @@ def test_scrape_comments_no_comments(monkeypatch, mock_response):
 # 测试 scrape_comments 函数在遇到不同的 HTML 结构时的行为
 def test_scrape_comments_different_html_structure(monkeypatch, mock_response):
     monkeypatch.setattr("requests.get", mock_response)
-    with open('test_different_html.html', 'r', encoding='utf-8') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'test_different_html.html'), 'r', encoding='utf-8') as f:
         different_html_content = f.read()
     comments, _ = scrape_comments("different_html_structure_url", test_mode=True, test_html=different_html_content)
     assert len(comments) == 20

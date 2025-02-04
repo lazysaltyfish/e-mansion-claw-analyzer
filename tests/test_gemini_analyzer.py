@@ -3,10 +3,10 @@ import json
 import os
 import shutil
 from datetime import datetime
-from gemini_analyzer import (
-    load_comments, 
-    extract_json_from_markdown, 
-    merge_results, 
+from src.gemini_analyzer import (
+    load_comments,
+    extract_json_from_markdown,
+    merge_results,
     format_comments,
     save_error_context
 )

@@ -28,25 +28,33 @@ e-mansion claw & analyzer 是一个 Python 项目，旨在从 e-mansion 网站�
 
 2. **配置 Gemini API 密钥**: 需要设置环境变量  `GEMINI_API_KEY`  为您的 Gemini API 密钥。
 
-3. **运行  `caller.py`**:
+3. **运行  `caller.py`**
 
-    *   确保  `urls.txt`  文件位于同一目录下，并且包含要处理的 URL 列表，每个 URL 占一行。
-    *   直接运行  `caller.py`  将读取  `urls.txt`  文件中的 URL 列表，抓取评论、检查缺失 ID 并进行分析。
+    *   确保 `urls.txt` 文件位于项目的根目录 (即 `property_claw` 文件夹) 下，并且包含要处理的 URL 列表，每个 URL 占一行。
+    *   从项目的根目录运行 `caller.py`，它将读取 `urls.txt` 文件中的 URL 列表，抓取评论、检查缺失 ID 并进行分析。
 
         ```bash
-        python caller.py
+        python src/caller.py
         ```
 
-    *   使用  `--check-missing`  参数和文件名，可以单独检查指定评论 JSON 文件的缺失 ID。
+    *   使用 `--check-missing` 参数和文件名，可以单独检查指定评论 JSON 文件的缺失 ID。
 
         ```bash
-        python caller.py --check-missing <filename>
+        python src/caller.py --check-missing <filename>
         ```
 
 ## `caller.py` 参数说明
 
 *   `--check-missing`: 标志，如果设置，则只检查指定文件中的缺失 ID，而不进行抓取和分析。
 *   `<filename>`: 可选参数，当使用  `--check-missing`  时，指定要检查的评论 JSON 文件名。
+
+## 运行测试
+
+要运行测试，请使用以下命令：
+
+```bash
+pytest tests
+```
 
 ## 项目结构
 

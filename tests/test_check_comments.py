@@ -1,7 +1,7 @@
 import pytest
 import json
 import logging
-from check_comments import check_missing_ids
+from src.check_comments import check_missing_ids
 
 # 用于测试的模拟 JSON 数据
 @pytest.fixture

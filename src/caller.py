@@ -6,14 +6,17 @@ import argparse
 import os
 import asyncio
 
+# 将项目的根目录添加到 sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from src.check_comments import check_missing_ids
+from src.gemini_analyzer import analyze_comments_async
+from src.scraper import scrape_comments
+
 # 设置日志记录器
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 async def main(urls_file="urls.txt"):
-    # 将所有导入移到函数内部
-    from check_comments import check_missing_ids
-    from gemini_analyzer import analyze_comments_async
-    from scraper import scrape_comments
 
     parser = argparse.ArgumentParser(description="处理URL并检查评论中的缺失ID。")
     parser.add_argument('--check-missing', action='store_true', help="检查给定文件中的缺失ID。")

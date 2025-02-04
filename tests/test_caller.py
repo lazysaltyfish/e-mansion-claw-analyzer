@@ -1,5 +1,5 @@
 import pytest
-from caller import main
+from src.caller import main
 from unittest.mock import patch, mock_open, MagicMock
 import json
 import logging
@@ -73,9 +73,9 @@ async def test_main_integration(tmp_path, monkeypatch):
 
     # 调用 main 函数
     with patch('builtins.open', mock_open_func), \
-         patch('scraper.scrape_comments', mock_scrape), \
-         patch('gemini_analyzer.analyze_comments_async', async_mock_analyze), \
-         patch('check_comments.check_missing_ids', mock_check):
+         patch('src.scraper.scrape_comments', mock_scrape), \
+         patch('src.gemini_analyzer.analyze_comments_async', async_mock_analyze), \
+         patch('src.check_comments.check_missing_ids', mock_check):
         await main(str(urls_file))
 
     # 验证模拟函数是否被正确调用
