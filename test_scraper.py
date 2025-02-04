@@ -53,6 +53,9 @@ def test_scrape_comments_success(monkeypatch, mock_response):
     assert comments[4]['id'] == '10437'
     assert comments[5]['id'] == '10438'
     assert comments[19]['id'] == '10452'
+    import os
+    if os.path.exists("comments.json"):
+        os.remove("comments.json")
 
 
 # 测试 scrape_comments 函数在遇到无效 URL 时的行为
@@ -66,6 +69,7 @@ def test_scrape_comments_invalid_url(monkeypatch, mock_response):
 # 测试 scrape_comments 函数在处理分页情况下的行为
 
 def test_scrape_comments_pagination(monkeypatch, mock_response):
+    import os
     monkeypatch.setattr("requests.get", mock_response)
     with open('test_html.html', 'r', encoding='utf-8') as f:
         html_content = f.read()
@@ -78,6 +82,8 @@ def test_scrape_comments_pagination(monkeypatch, mock_response):
     assert comments[4]['id'] == '10437'
     assert comments[5]['id'] == '10438'
     assert comments[19]['id'] == '10452'
+    if os.path.exists("comments.json"):
+        os.remove("comments.json")
 
 
 # 测试 scrape_comments 函数在遇到没有评论的情况下的行为
