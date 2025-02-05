@@ -291,7 +291,7 @@ async def main_async():
     try:
         result = await analyze_comments_async(comments, args.concurrent)
         if result:
-            output_path = f"analysis_{os.path.basename(args.input_json)}"
+            output_path = os.path.join("output", "analysis_results", f"analysis_{os.path.basename(args.input_json)}")
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(result)
             logging.info(f"分析结果已保存至 {output_path}")

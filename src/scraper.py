@@ -1,3 +1,4 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -15,16 +16,16 @@ logging.basicConfig(
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
 
-def scrape_comments(base_url, filename="comments.json", test_mode=False, test_html=""):
+def scrape_comments(base_url, filename="comments.json", test_mode=False, test_html="", output_dir="output/intermediate_results"):
     """增量抓取网页评论并保存到 JSON 文件."""
 
     # 从 base_url 中提取楼盘 ID
     match = re.search(r'/thread/(\d+)/', base_url)
     if match:
         thread_id = match.group(1)
-        filename = f"comments_{thread_id}.json" # 使用楼盘 ID 创建文件名
+        filename = os.path.join(output_dir, f"comments_{thread_id}.json") # 使用楼盘 ID 创建文件名
     else:
-        filename = "comments.json" # 默认文件名,如果无法提取 ID
+        filename = os.path.join(output_dir, "comments.json") # 默认文件名,如果无法提取 ID
 
     # 尝试加载已有的评论
     try:

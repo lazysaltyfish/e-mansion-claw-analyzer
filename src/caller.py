@@ -46,13 +46,14 @@ async def main(urls_file="urls.txt"):
             
             if match:
                 thread_id = match.group(1)
-                output_dir = "."  # 默认为当前目录
-                filename = os.path.join(output_dir, f"comments_{thread_id}.json")
+                output_dir = "output/intermediate_results"  # 默认为中间结果输出目录
+                analysis_filename = os.path.join("output", "analysis_results", f"analysis_comments_{thread_id}_merged.json") # 正确的赋值位置
+                filename = f"comments_{thread_id}.json"
                 # 直接调用 scrape_comments 函数
-                comments, new_comments_found = scrape_comments(url, filename=filename)
-                if new_comments_found:
+                comments, new_comments_found = scrape_comments(url, filename=filename, output_dir=output_dir)
+                if new_comments_found or (analysis_filename is not None and not os.path.exists(analysis_filename)):
                     logging.info("检测到新评论,正在运行分析")
-                    check_missing_ids(filename)
+                    check_missing_ids(os.path.join("output", "intermediate_results", filename))
                     # 使用异步函数analyze_comments_async
                     logging.info(f"正在为 URL: {url} 分析 {len(comments)} 条评论")
                     result = await analyze_comments_async(comments)
