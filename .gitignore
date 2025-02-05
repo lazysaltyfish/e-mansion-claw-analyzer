@@ -169,3 +169,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# error logs
+error_logs/
+
+# outputs
+output/
