@@ -58,7 +58,6 @@ async def main(urls_file="urls.txt"):
                     logging.info(f"正在为 URL: {url} 分析 {len(comments)} 条评论")
                     result = await analyze_comments_async(comments)
                     # 保存分析结果
-                    analysis_filename = os.path.join(output_dir, f"analysis_comments_{thread_id}_merged.json")
                     with open(analysis_filename, 'w', encoding='utf-8') as f:
                         f.write(result)
                 else:

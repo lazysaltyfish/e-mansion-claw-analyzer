@@ -165,9 +165,8 @@ async def analyze_comments_async(comments, concurrent=5):
     
     # 使用同步函数进行最终合并
     try:
-        loop = asyncio.get_event_loop()
-        with ThreadPoolExecutor() as pool:
-            final_result = await loop.run_in_executor(pool, analyze_comments, merged_json_str, MERGE_PROMPT)
+        # 直接调用异步函数进行最终合并
+        final_result = await analyze_comments(merged_json_str, MERGE_PROMPT)
     except Exception as e:
         logging.error(f"最终合并请求过程中发生错误: {str(e)}")
         save_error_context(MERGE_PROMPT, merged_json_str, e)
@@ -211,7 +210,7 @@ async def analyze_comments(comments, prompt):
 
     while retries < max_retries:
         try:
-            response = await model.generate_content(json.dumps(input_message)) # 需要 await
+            response = await model.generate_content_async(json.dumps(input_message))
             return response.text
         except Exception as e:
             error_msg = f"Gemini API调用失败 (尝试次数: {retries + 1}/{max_retries}): {str(e)}"

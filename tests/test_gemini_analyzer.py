@@ -227,7 +227,7 @@ def test_merge_results_empty_list():
 @pytest.mark.asyncio
 async def test_analyze_comments_success(mocker):
     """测试 analyze_comments 函数在 API 调用成功的情况"""
-    mock_generate_content = mocker.patch("google.generativeai.GenerativeModel.generate_content", new_callable=AsyncMock)
+    mock_generate_content = mocker.patch("google.generativeai.GenerativeModel.generate_content_async", new_callable=AsyncMock)
     mock_generate_content.return_value = AsyncMock(text='{"property_name": "Test Property", "information": {}}')
     
     comments = ["test comment"]
@@ -257,7 +257,7 @@ async def test_analyze_comments_retry_success(mocker):
 @pytest.mark.asyncio
 async def test_analyze_comments_retry_fail(mocker, clean_error_logs):
     """测试 analyze_comments 函数在 API 多次调用失败后最终失败的情况"""
-    mock_generate_content = mocker.patch("google.generativeai.GenerativeModel.generate_content", new_callable=AsyncMock)
+    mock_generate_content = mocker.patch("google.generativeai.GenerativeModel.generate_content_async", new_callable=AsyncMock)
     # 多次调用都失败
     mock_generate_content.side_effect = Exception("API Error")
     
