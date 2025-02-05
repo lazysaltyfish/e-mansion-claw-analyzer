@@ -9,13 +9,13 @@ def check_missing_ids(filename):
         with open(filename, "r", encoding="utf-8") as f:
             comments = json.load(f)
     except FileNotFoundError:
-        logging.error(f"错误:文件 {filename} 未找到")
-        return
+        logging.info(f"文件 {filename} 未找到，跳过缺失 ID 检查。")
+        return []
 
     existing_ids = [int(comment['id']) for comment in comments]
     if not existing_ids:
         logging.info("文件中没有评论数据")
-        return
+        return []
 
     min_id = min(existing_ids)
     max_id = max(existing_ids)

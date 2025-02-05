@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-e-mansion claw & analyzer 是一个 Python 项目，旨在从 e-mansion 网站抓取评论数据，并使用 Gemini API 对评论进行分析，提取楼盘的优缺点、价格信息以及其他有价值的信息。
+e-mansion claw & analyzer 是一个 Python 项目，旨在从 e-mansion 网站抓取特定楼盘的论坛评论数据，并使用 Gemini API 对评论进行分析，提取楼盘的优缺点、价格信息以及其他有价值的信息。
 
 ## 项目目的
 
@@ -10,20 +10,22 @@ e-mansion claw & analyzer 是一个 Python 项目，旨在从 e-mansion 网站�
 
 ## 文件说明
 
-*   **caller.py**: 主程序入口文件，负责调用  `scraper.py`  抓取评论，调用  `check_comments.py`  检查评论完整性，以及调用  `gemini_analyzer.py`  分析评论。
-*   **scraper.py**: 负责从指定 URL 抓取网页评论，并将评论数据保存为 JSON 文件。支持增量抓取，避免重复抓取已存在的评论。文件名现在包含从 URL 中提取的楼盘 ID。
-*   **check_comments.py**: 负责检查评论 JSON 文件中评论 ID 的连续性，找出缺失的评论 ID，用于评估抓取结果的完整性。
-*   **gemini_analyzer.py**: 负责加载评论 JSON 文件，调用 Google Gemini API 对评论进行分析，提取楼盘的优缺点、价格等信息，并将分析结果保存为 JSON 文件。现在还使用合并提示合并分析结果。
-*   **analysis_comments_*.json**: Gemini API 分析评论后生成的 JSON 结果文件，文件名包含时间戳。
-*   **comments_*.json**:  `scraper.py`  抓取的原始评论 JSON 文件，文件名包含楼盘 ID。
+*   **caller.py**: 主程序入口文件，负责调用  `scraper.py`  抓取评论，以及调用  `gemini_analyzer.py`  分析评论。
+*   **scraper.py**: 负责从指定 URL 抓取网页评论，并将评论数据保存为 JSON 文件。支持增量抓取，避免重复抓取已存在的评论。文件名包含从 URL 中提取的楼盘 ID。
+*   **check_comments.py**: 检查评论 JSON 文件中评论 ID 的连续性，找出缺失的评论 ID (此功能主要用于开发调试，一般用户无需使用)。
+*   **gemini_analyzer.py**: 负责加载评论 JSON 文件，调用 Google Gemini API 对评论进行分析，提取楼盘的优缺点、价格等信息，并将分析结果保存为 JSON 文件。使用合并提示合并分析结果。
+*   **output/analysis_results/analysis_comments_\*.json**: Gemini API 分析评论后生成的 JSON 结果文件，文件名包含楼盘ID和时间戳。
+*   **output/intermediate_results/comments_\*.json**:  `scraper.py`  抓取的原始评论 JSON 文件，文件名包含楼盘 ID。
 *   **urls.txt**: 包含待抓取 URL 列表的文件，每个 URL 占一行。
+*   **requirements.txt**: 包含项目依赖的Python包列表.
+*   **tests/**: 包含项目的单元测试文件.
 
 ## 使用方法
 
-1. **安装依赖**: 确保已安装以下 Python 库：
+1. **安装依赖**:
 
     ```bash
-    pip install requests beautifulsoup4 google-generativeai
+    pip install -r requirements.txt
     ```
 
 2. **配置 Gemini API 密钥**: 需要设置环境变量  `GEMINI_API_KEY`  为您的 Gemini API 密钥。
@@ -31,49 +33,73 @@ e-mansion claw & analyzer 是一个 Python 项目，旨在从 e-mansion 网站�
 3. **运行  `caller.py`**
 
     *   确保 `urls.txt` 文件位于项目的根目录 (即 `property_claw` 文件夹) 下，并且包含要处理的 URL 列表，每个 URL 占一行。
-    *   从项目的根目录运行 `caller.py`，它将读取 `urls.txt` 文件中的 URL 列表，抓取评论、检查缺失 ID 并进行分析。
+    *   从项目的根目录运行 `caller.py`，它将读取 `urls.txt` 文件中的 URL 列表，抓取评论并进行分析。
 
         ```bash
         python src/caller.py
         ```
-
-    *   使用 `--check-missing` 参数和文件名，可以单独检查指定评论 JSON 文件的缺失 ID。
-
+    *   可以使用`--check-missing`参数和评论文件名来检查评论ID的连续性（通常不需要，除非您怀疑抓取过程有遗漏）：
         ```bash
-        python src/caller.py --check-missing <filename>
+        python src/caller.py --check-missing output/intermediate_results/comments_<楼盘ID>.json
         ```
 
 ## `caller.py` 参数说明
 
 *   `--check-missing`: 标志，如果设置，则只检查指定文件中的缺失 ID，而不进行抓取和分析。
-*   `<filename>`: 可选参数，当使用  `--check-missing`  时，指定要检查的评论 JSON 文件名。
+*   `filename`: 可选参数，当使用  `--check-missing`  时，指定要检查的评论 JSON 文件名。
 
 ## 运行测试
 
 要运行测试，请使用以下命令：
 
 ```bash
-PYTHONPATH=. pytest tests
+set PYTHONPATH=. && python -m pytest tests
+```
+或者, 如果您只想运行`caller.py`的测试:
+```bash
+set PYTHONPATH=. && python -m pytest tests/test_caller.py -v
+```
+或者, 如果您只想运行`check_comments.py`的测试:
+```bash
+set PYTHONPATH=. && python -m pytest tests/test_check_comments.py -v
+```
+或者, 如果您只想运行`gemini_analyzer.py`的测试:
+```bash
+set PYTHONPATH=. && python -m pytest tests/test_gemini_analyzer.py -v
+```
+或者, 如果您只想运行`scraper.py`的测试:
+```bash
+set PYTHONPATH=. && python -m pytest tests/test_scraper.py -v
 ```
 
 ## 项目结构
 
 ```
 property_claw/
-├── analysis_comments_*.json
-├── caller.py
-├── check_comments.py
-├── comments_*.json
-├── gemini_analyzer.py
-├── scraper.py
+├── output/
+│   ├── analysis_results/
+│   │   └── analysis_comments_*.json
+│   └── intermediate_results/
+│       └── comments_*.json
+├── src/
+│   ├── caller.py
+│   ├── check_comments.py
+│   ├── gemini_analyzer.py
+│   └── scraper.py
+├── tests/
+│   ├── test_caller.py
+│   ├── test_check_comments.py
+│   ├── test_gemini_analyzer.py
+│   └── test_scraper.py
 ├── README.md
 ├── urls.txt
-└── __pycache__/
+├── requirements.txt
+└── .gitignore
 ```
 
 ## 分析结果示例 (Example Analysis Result)
 
-以下是 `analysis_comments_683455_merged.json` 的分析结果示例，展示了 Gemini API 对楼盘评论进行分析后提取出的优点、缺点、价格和其他信息。
+以下是 `output/analysis_results/analysis_comments_683455_merged.json` 的分析结果示例，展示了 Gemini API 对楼盘评论进行分析后提取出的优点、缺点、价格和其他信息。
 
 ```json
 {

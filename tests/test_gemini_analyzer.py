@@ -240,18 +240,24 @@ async def test_analyze_comments_success(mocker):
 @pytest.mark.asyncio
 async def test_analyze_comments_retry_success(mocker):
     """测试 analyze_comments 函数在 API 首次调用失败后重试成功的情况"""
-    mock_generate_content = mocker.patch("google.generativeai.GenerativeModel.generate_content", new_callable=AsyncMock)
+    mock_response = AsyncMock()
+    mock_response.text = '''```json
+{"property_name": "Test Property", "information": {}}
+```'''
+    mock_generate_content = mocker.patch("google.generativeai.GenerativeModel.generate_content_async", new_callable=AsyncMock)
     # 首次调用失败, 第二次调用成功
     mock_generate_content.side_effect = [
         Exception("API Error"),
-        AsyncMock(text='{"property_name": "Test Property", "information": {}}')
+        mock_response
     ]
     
     comments = ["test comment"]
     prompt = "test prompt"
     result = await analyze_comments(comments, prompt)
     
-    assert result == '{"property_name": "Test Property", "information": {}}'
+    assert result == '''```json
+{"property_name": "Test Property", "information": {}}
+```'''
     assert mock_generate_content.call_count == 2 # 验证调用了两次
 
 @pytest.mark.asyncio

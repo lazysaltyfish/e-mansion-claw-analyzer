@@ -57,7 +57,7 @@ def test_check_missing_ids_file_not_found(caplog):
     # 调用 check_missing_ids 函数检查缺失的 ID
     check_missing_ids("nonexistent_file.json")
     # 断言返回了缺失的 ID 列表
-    assert "错误:文件 nonexistent_file.json 未找到" in caplog.text
+    assert "文件 nonexistent_file.json 未找到，跳过缺失 ID 检查。" in caplog.text
 
 # 测试 check_missing_ids 函数在评论中缺失id key时的行为
 def test_check_missing_ids_missing_id_key(tmp_path, mock_json_data, caplog):

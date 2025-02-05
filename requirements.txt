@@ -2,3 +2,5 @@ google-generativeai
 pytest
 pytest-asyncio
 beautifulsoup4
+requests
+pytest-mock
