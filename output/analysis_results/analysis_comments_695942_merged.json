@@ -1,0 +1,333 @@
+{
+  "property_name": "Proud Tower Higashiikebukuro Cross",
+  "information": {
+    "advantages": [
+      {
+        "type": "inference",
+        "description": "素朴なデザインと間取りですね。ブリークリア、グランドと三本柱として注目を集めている物件です。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "東向きが好きならばベストです。この南向きは最高でしょう。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "プランは今ひとつ。",
+        "confidence_score": 0.5
+      },
+      {
+        "type": "inference",
+        "description": "久々にこんなに素晴らしい間取りの物件を見ました。ワイドスパン、行灯部屋無し、柱の食い込み無しは高評価。良い物件が出てきました。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "住戸の価格は、周辺のグランドシティタワーより安い。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "駅アクセス重視ならGCT、眺望と高級感を求めるならプラウドですね。\r\nあとは、値段次第ですが、やっぱり第一期がお買い得。\r\nその後、だんだんつり上がっていく戦略なんで。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "周辺相場も確立していて、先行のGCTもあるため、価格が分かりやすい。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "立地も良いし、高くても買いたい人は多いと思う。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "機械式換気",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "住友不動産のプラウドブランドに惹かれています。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "fact",
+        "description": "南向き",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "駅直結",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "住友の物件の中では割安",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "眺望や間取りが良い物件が人気",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "資産性が高い",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "住みやすい",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "ワイドスパン、開放的な柱の配置は高評価。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "駅徒歩圏内",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "豊島区",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "池袋駅",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "駅近",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "ほんま素朴やん",
+        "confidence_score": 1.0
+      }
+    ],
+    "disadvantages": [
+      {
+        "type": "inference",
+        "description": "機械式換気で清掃工場と空気が悪いマンションで共有される設備だよ。東池袋なら不要でしょう。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "全熱交換器欲しいなと思いました。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "広大な墓地を見て生活するのは…。さすがに青山墓地なら我慢もするけど…。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "床暖房がない",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "億1000万は高すぎ。66平米で2億円。販売サイドの書き込み？700万円台で売ってほしい。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "億1000なら駅直結のグランドシティタワーを買った方がいい。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "fact",
+        "description": "全熱交換器がない",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "坪単価が高い",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "駅直結のグランドシティタワーに劣る",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "価格が高い",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "東向きは都電の駆音が気になる",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "北向き低層階はスミフと向かい合う",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "墓地が見える",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "管理費、修繕積立金が高い",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "駐車場が少ない",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "床暖房がないのかな",
+        "confidence_score": 0.8
+      }
+    ],
+    "price": [
+      {
+        "type": "inference",
+        "description": "プラウドのブランドイメージに惹かれていますが、億1000万くらいまでは前向きに検討します。それ以上だと金利の動向も気にしないといけません。南向きがベストですが、無理なら東向きで。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "億1000ならこの近くで駅直結のグランドシティタワー買った方が良いような…（ただ2期もいい部屋は抽選っぽいですが）",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "インフルエンサー達の予想は億700万みたい！",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "700万円台から検討",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "1000万円",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "坪1000万円",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "66平米で2億円",
+        "confidence_score": 1
+      },
+      {
+        "type": "fact",
+        "description": "周りのGCTが坪900万円でかなり申込みあるようですから、永久眺望のここは億1000万円でもスムーズに売れると思いますよ",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "インフルエンサーの予想は坪700万みたいだよ！",
+        "confidence_score": 0.7
+      }
+    ],
+    "other_information": [
+      {
+        "type": "inference",
+        "description": "住民もいるし駅直結のGCTに勝つとは思えないし、実際住人も含み損あるし。GCTも向きを選べばリセールするし。 B地区止まってブリリアも南と西は埋まったまま。一応大手不動産の見立てではブリークリアよりは評価らしいよ(ただブリークリアは今の在宅の坪単価高いけど)。野村棟の広さや間取りはいいよね",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "同じ価格帯でもこちらの物件が売れそうだ。最近はむしろメリットあるのですが買い換える理由があるマンション、眺望や間取りが良い物件が人気だね。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "すみふの方は囲まれ大していろいろ微妙。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "fact",
+        "description": "機械式換気",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "全熱交換器がない",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "ベランダに洗濯物干しバーが付いている。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "人気エリア",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "プラウドは公式ページがよくできている",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "住み続けたい人が多い",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "眺望良好",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "共用施設充実",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "完成後も売れ続く",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "竣工後数年で売却されるのは残存",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "洗濯乾燥バー付き",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "マンマニさんが褒めまくってましたね。ここだけ気になってました。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "間取りは全熱交換器は無さそうですが壁ポコ無しの機械式換気だと思います。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "機械式換気って清掃工場とかが近い空気の悪いマンションで採用される設備だよ。東池袋なら不要でしょう。",
+        "confidence_score": 1.0
+      }
+    ]
+  }
+}

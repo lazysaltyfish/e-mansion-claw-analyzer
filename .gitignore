@@ -172,6 +172,3 @@ cython_debug/
 
 # error logs
 error_logs/
-
-# outputs
-output/

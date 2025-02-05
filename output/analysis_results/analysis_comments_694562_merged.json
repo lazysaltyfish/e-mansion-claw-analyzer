@@ -1,0 +1,428 @@
+{
+  "property_name": "City Tower Shibaura",
+  "information": {
+    "advantages": [
+      {
+        "type": "fact",
+        "description": "多条路线可以到达车站，通勤方便。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "靠近多个车站，生活便利。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "新建的小学校可以方便孩子上学。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "周边生活环境好。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "有很多的幼儿园和托儿所。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "适合有孩子的家庭居住。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "由于无障碍设施完善，老年人或残疾人也可以安心居住。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "周围有很多商业设施。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "田町站周边正在进行大规模的再开发，未来升值潜力大。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "多条线路可以使用，到哪个车站都在10分钟左右，所以不用开车也能生活，这很方便。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "保育园也很多，所以对有孩子的夫妇来说，这里是一个相对舒适的生活环境。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "白金高轮和东京田町都是受欢迎的地区。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "从虎之门到滨松町到东京田町都是受欢迎的地区。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "芝浦到品川有很多受欢迎的设施，没有人气低的地方。",
+        "confidence_score": 0.5
+      },
+      {
+        "type": "inference",
+        "description": "滨松町到芝浦没有人气低的地方。",
+        "confidence_score": 0.5
+      },
+      {
+        "type": "fact",
+        "description": "靠近多个车站，交通便利。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "有很多保育园。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "靠近东急不动产的多个大型开发项目，未来升值潜力大。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "芝浦地区以小型公寓为主，该公寓户数较少，管理费可能较高。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "由于靠近车站和多个商业设施，生活便利。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "由于靠近港区海岸，环境优美。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "由于是新开发的公寓，房屋质量较高，抗震性能好。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "白金高轮、东京田町是人气地区。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "从虎之门到滨松町到东京田町都是人气地区",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "最近的车站步行8分钟左右，很方便。",
+        "confidence_score": 1.0
+      }
+    ],
+    "disadvantages": [
+      {
+        "type": "inference",
+        "description": "户数少，管理费可能会比较高。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "由于靠近车站，可能会比较吵闹。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "地基直接建在软弱地基上，存在液化风险。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "价格较高。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "销售速度较慢。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "到车站都要步行10分钟左右。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "虽然可以使用多条线路，但是步行距离有点远。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "周围环境不如芝浦或丰洲。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "从远离市中心来看，品川比芝浦更好。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "fact",
+        "description": "这栋楼似乎建在直接地基上，但由于周围都是豆腐渣地基，不知道会不会有问题。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "因为这栋楼的住户数量少，所以每户的管理费负担会很大。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "公寓高价位，家庭实际需要者难以购买。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "从BRJ公寓到前面路口的信号灯有100米以上的距离。看起来很近，但实际上很远。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "价格偏高。预计售价在800万到1000万日元之间。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "建设成本高。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "周边地区地基较差，存在液化风险。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "与同等价位的其他公寓相比，面积较小。",
+        "confidence_score": 0.5
+      },
+      {
+        "type": "inference",
+        "description": "与其他地区相比，周边环境不如丰洲、晴海等优美。",
+        "confidence_score": 0.5
+      }
+    ],
+    "price": [
+      {
+        "type": "inference",
+        "description": "预计均价在850万到900万日元之间。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "低层800万日元左右，高层1000万日元。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "3LDK的角部屋预计价格在1200万日元以上。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "预计价格在800万到1000万日元之间。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "高层住户的剩余价值会超过1000万日元。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "BRJ公寓的平均价格是730万日元，东南角的15楼是850万日元。这栋楼的价格相当高。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "平均800万日元。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "即使600万日元也很难买到。800万日元左右的比较常见。",
+        "confidence_score": 0.5
+      },
+      {
+        "type": "inference",
+        "description": "我认为第三期芝浦塔公寓的起价是200万日元左右。实际上是3倍的价格。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "800万到1000万日元的价格不错。但是有180户。即使花时间，也可以高价卖出。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "最低也要550万日元左右。600万日元的话，就不知道世界的中心在哪里了，而且卖不出去。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "丰洲的价格是620万日元，那么芝浦的价格应该是700万日元左右。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "平均价格是700万日元左右。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "BRJ公寓的平均价格约为700万日元。",
+        "confidence_score": 0.5
+      },
+      {
+        "type": "inference",
+        "description": "与附近的BRANZ TOWER相比，价格偏高。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "与同等价位的白金或麻布十番相比，性价比不高。",
+        "confidence_score": 0.5
+      }
+    ],
+    "other_information": [
+      {
+        "type": "fact",
+        "description": "预计2025年8月上旬开始销售。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "总户数为180户（包括其他10户）。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "和附近的BRANZ TOWER SHIBAURA、PROUD TOWER SHIBAURA相比，价格较高。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "和芝浦、港南等湾岸地区相比，教育资源相对较弱。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "和品川相比，地段和周边环境不如品川。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "居住在这里，哪个车站都可以步行10分钟左右到达。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "BRJ公寓距离田町站步行8分钟，但这栋楼步行10分钟。很近。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "BRJ公寓距离车站很近。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "可以使用的车站很多，但是步行距离有点远。考虑到停车场数量还没有确定，如果打算开车去车站的话，我认为这里的环境还不错。我不认为需要私家车，但我希望有更多其他信息。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "户型、面积、朝向等信息尚未公布，我正在等待。期待3LDK！",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "东池袋附近有没有不带DW的海外规格公寓？",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "感觉建筑成本很高。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "这栋公寓是钢筋混凝土结构的。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "由于地震很多，所以没有地基让人感到不安。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "如果考虑车站距离的结构，这是一个吸引人的地方。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "靠近东京都市港区芝浦。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "周边有多个商业设施，如超市和餐厅。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "靠近芝浦中央公园等公园绿地。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "附近有品川站等交通枢纽，出行方便。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "与港南相比，芝浦地区绿化较多。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "居住在东京市中心，有几条铁路可以用，位置不错。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "与Branz Tower芝浦相比，这里步行到车站更近。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "周边环境优良，人气地区。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "芝浦和港南的居住环境和地价完全不同。和月岛等地相比，芝浦的公园、绿地和开放空间面积都比较小。",
+        "confidence_score": 0.9
+      }
+    ]
+  }
+}

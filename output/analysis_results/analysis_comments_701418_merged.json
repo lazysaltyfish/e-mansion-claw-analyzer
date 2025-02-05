@@ -1,0 +1,333 @@
+{
+  "property_name": "巴斯日暮里",
+  "information": {
+    "advantages": [
+      {
+        "type": "inference",
+        "description": "到东京站和成田机场的交通便利",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "位于市中心，但闹中取静，周边环境好",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "靠近上野公园",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "适合有孩子的家庭居住",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "日暮里站附近有多条电车线路",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "西日暮里再开发完成后，会有大型商业设施，生活更加便利",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "公共设施完善，如全户型配备衣橱，设置了宾客休息室和地下停车场",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "靠近市中心和机场，交通便利。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "有多条电车线路可供选择，出行方便。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "附近有公园和咖啡馆等，生活便利。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "日暮里站步行6分钟，西日暮里站步行7分钟。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "西日暮里站附近正在进行大规模的再开发，未来发展潜力大。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "相比其他地区，投资价值更高。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "附近有上野公园，环境宜人。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "fact",
+        "description": "日暮里站步行6分钟，西日暮里站步行7分钟，三河岛站步行9分钟。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "公共设施完善，例如全户型配备TrancRoom、设置了宾客房和地下停车场等。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "都内·空港へのアクセスが良い。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "到东京站和机场的交通便利，因为靠近山手线和京津东北线。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "由于靠近上野公园，生活环境良好。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "由于西日暮里重建项目，大型购物设施的缺乏得到弥补。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "随着西日暮里重建和东山手线路的开通，预计房地产价值将会上涨。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "对于有孩子的家庭来说，这是一个很棒的地方，因为它靠近学校和公园等便利设施。",
+        "confidence_score": 0.7
+      }
+    ],
+    "disadvantages": [
+      {
+        "type": "inference",
+        "description": "价格偏高",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "部分房屋靠近大马路，可能会有一些噪音",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "fact",
+        "description": "部分户型朝向西北，采光可能不足",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "缺乏大型商业设施",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "楼龄较老的房屋需要考虑翻修问题",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "高层建筑的管理费和固定资产税较高",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "缺乏大型商业设施。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "fact",
+        "description": "部分房屋靠近大马路，可能会受到噪音影响。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "一些比较老旧的公寓可能需要翻新。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "由于靠近主要道路，一些公寓可能会受到噪音和空气污染的影响。",
+        "confidence_score": 0.5
+      },
+      {
+        "type": "inference",
+        "description": "一些较旧的公寓可能需要翻新，并且可能存在建筑法规问题。",
+        "confidence_score": 0.5
+      },
+      {
+        "type": "fact",
+        "description": "有些公寓使用机械式停车场，而不是地下停车场。",
+        "confidence_score": 0.9
+      }
+    ],
+    "price": [
+      {
+        "type": "inference",
+        "description": "预计每坪单价在600万日元以上",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "70平米的三个房间价格可能会超过1亿1千万日元",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "78平米的三个房间价格大约在1亿2千万日元",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "75平米的价格预计在1亿2千万到1亿3千万日元之间",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "部分房源单价可能高达700万日元",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "预计平均每平米价格超过600万日元。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "一些高端公寓价格可能达到2亿日元以上。",
+        "confidence_score": 0.5
+      },
+      {
+        "type": "inference",
+        "description": "一些二手房价格在400万到500万日元之间。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "fact",
+        "description": "1年前的Luzent西日暮里是每坪400万日元左右，所以低于每坪480万日元是不太可能的",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "伊尼西亚日暮里好像是每坪510万日元左右",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "欧帕斯日暮里车站前公寓(中古)近1亿日元售出并已下架，所以应该有人会买。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "每坪462万日元左右。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "丰洲的公寓是标准的3LDK超过1亿日元，以此为基准，1.5亿日元左右是可能的。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "丰洲的公寓，朝东70平米LDK要12500万日元！",
+        "confidence_score": 1.0
+      }
+    ],
+    "other_information": [
+      {
+        "type": "fact",
+        "description": "西日暮里站再开发将于2024年完成",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "东山手线路将于2025年开通",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "附近有中央日本土地建筑公司开发的楼盘",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "附近有太阳城西日暮里等楼盘在售",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "有部分二手房源在售",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "该区域的房产升值潜力较大",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "需要注意洪水灾害风险",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "该地区适合家庭居住，特别是养育孩子的家庭。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "西日暮里再开发完成后，商业设施会更加完善。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "西日暮里再开发和东山手线路开通，提升了地区的价值。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "与其他车站附近的楼盘相比，价格偏高，投资需谨慎。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "周边有很多高级公寓和独栋住宅。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "该地区很容易受到洪水的影响，购房者应注意洪水风险图。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "该地区有几个正在出售的公寓楼盘，例如普劳德日暮里露台和阿特拉斯品牌大厦西日暮里车站前。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "该地区正在经历重建和发展，这可能会导致未来房地产价值进一步上涨。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "该地区以其老城区氛围和众多独立商店和餐馆而闻名。",
+        "confidence_score": 0.8
+      }
+    ]
+  }
+}

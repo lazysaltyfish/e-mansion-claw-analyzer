@@ -1,0 +1,273 @@
+{
+  "property_name": "普罗德神田多町",
+  "information": {
+    "advantages": [
+      {
+        "type": "inference",
+        "description": "停车位充足",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "12层94户，在这个区域是较大的规模",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "距离银座、日本桥、御茶之水步行可达",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "采用外框架工法",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "79平米的大户型，真正的1LDK",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "所有户型当日售罄",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "靠近秋叶原",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "神田-御茶之水区域正在进行重建，未来发展潜力大",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "交通便利，靠近多个地铁线路",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "靠近学校和政府机构",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "附近有超市",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "小学和政府机关很近",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "交通便利，靠近商店和餐厅。",
+        "confidence_score": 0.9
+      }
+    ],
+    "disadvantages": [
+      {
+        "type": "inference",
+        "description": "周围环境一般，街道比较脏乱",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "晚上周边地区比较昏暗",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "西向的房屋视野不好",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "周围建筑物老旧",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "部分户型的层高较低",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "1LDK和2LDK的轮售收益率不高",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "街道很脏。有时会看到有人在上面走。而且，不知怎么的，神田站附近的气味很难闻",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "周围有很多小餐馆。车站前的便利店也很显眼，还有很多可疑的顾客。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "晚上流浪汉很多，车站附近很乱。街上也经常有吸烟的流浪汉。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "早上，经常看到在附近商店工作的员工（我看到一些人在街上呕吐……）。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "部分房间天花板低，窗户小。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "有些户型在走廊尽头，采光和通风可能不足。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "神田站周边街道狭窄，人多嘈杂。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "夜间周边环境较为复杂，存在安全隐患。",
+        "confidence_score": 0.6
+      }
+    ],
+    "price": [
+      {
+        "type": "inference",
+        "description": "1LDK均价约700万日元",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "3LDK均价约1000万日元",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "比日本桥地区价格略低",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "价格偏高",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "fact",
+        "description": "一套79平方米的公寓售价约为7亿日元。",
+        "confidence_score": 0.9
+      }
+    ],
+    "other_information": [
+      {
+        "type": "inference",
+        "description": "很多律师事务所员工居住在附近",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "空置率低，尤其是1LDK和2LDK",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "适合单身或DINKS家庭居住",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "普罗德神田多町的所有单元在发售当天就售罄了。这个地区的需求量很大。材料也很昂贵，但很多人都想买，无论是投资还是刚需。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "1LDK 和 2LDK 的公寓空置超过 2 个月。附近公寓的空置率也很高，条件更好，价格更低，如果你正在寻找抵押贷款，我认为这个地区值得好好研究。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "79平方米的1LDK公寓很宽敞。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "12层94户。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "采用外框架施工法。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "1LDK和2LDK的两个单元空置了两个多月。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "多为开发商Proud的抢手窄幅单元。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "原址为新中央酒店神田。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "位于洼地2区。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "神田多町原来的地名是田町。地基是冲积低地2。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "靠近秋叶原",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "神田站西口正在进行大规模重建",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "空置公寓较多",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "千代田区的社会保险费较高",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "该公寓位于东京都千代田区。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "靠近神田小学、千代田图书馆和神田公园。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "一期已售罄。",
+        "confidence_score": 1.0
+      }
+    ]
+  }
+}

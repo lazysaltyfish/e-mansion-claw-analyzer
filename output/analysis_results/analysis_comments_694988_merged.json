@@ -1,0 +1,313 @@
+{
+  "property_name": "利维奥小石川后乐园",
+  "information": {
+    "advantages": [
+      {
+        "type": "inference",
+        "description": "位于市中心，可以方便地前往多个车站。",
+        "confidence_score": 0.75
+      },
+      {
+        "type": "inference",
+        "description": "靠近大型超市和各种商店，生活很便利。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "公共设施很完善。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "周边绿化较多，环境清静，适合居住。",
+        "confidence_score": 0.75
+      },
+      {
+        "type": "inference",
+        "description": "周边有公园和绿地。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "设有1700平方米的大型超市。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "地段好，投资价值高，将来出售或出租都很容易。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "适合长期居住。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "公共区豪华，设计感强，能满足高端人士的需求。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "房间宽敞，采光好。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "3LDK 户型很适合有孩子的家庭。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "该地区拥有良好的教育环境。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "周围环境宁静，绿化丰富。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "闹中取静，位置优越",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "适合有孩子的家庭居住",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "位于文京区，教育资源丰富",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "大型公寓，公共设施完善",
+        "confidence_score": 0.9
+      }
+    ],
+    "disadvantages": [
+      {
+        "type": "inference",
+        "description": "距离车站较远，出行需要步行10分钟以上，对于老年人来说比较辛苦。",
+        "confidence_score": 0.75
+      },
+      {
+        "type": "inference",
+        "description": "是定期租赁，不是所有银行都能提供贷款。",
+        "confidence_score": 0.95
+      },
+      {
+        "type": "inference",
+        "description": "垃圾存放处设计不合理，存在卫生隐患。",
+        "confidence_score": 0.75
+      },
+      {
+        "type": "inference",
+        "description": "没有足够的电梯和垃圾存放处。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "班车太少，上下班高峰期乘坐电梯不方便。",
+        "confidence_score": 0.75
+      },
+      {
+        "type": "inference",
+        "description": "定期租赁的房产，70年后所有权归零，存在不确定性。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "部分户型视野不好，可以看到墓地，影响居住体验。",
+        "confidence_score": 0.65
+      },
+      {
+        "type": "inference",
+        "description": "停车位紧张，需要抽签或租赁外部停车位。",
+        "confidence_score": 0.85
+      },
+      {
+        "type": "inference",
+        "description": "管理费较高。",
+        "confidence_score": 0.75
+      },
+      {
+        "type": "inference",
+        "description": "位于低洼地带，存在洪水风险。",
+        "confidence_score": 0.5
+      },
+      {
+        "type": "fact",
+        "description": "是定期租赁产权。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "垃圾存放点只有一个。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "电梯数量少，容易拥挤。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "部分户型可以看到墓地。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "没有充足的停车位。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "一些低楼层住户抱怨交通噪音。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "由于靠近超市，可能会有车辆噪音和工作人员的声音",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "部分户型采光和通风较差",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "周边有工厂和下町区域",
+        "confidence_score": 0.8
+      }
+    ],
+    "price": [
+      {
+        "type": "fact",
+        "description": "一套70平方米的公寓售价约为1.1亿日元。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "价格偏高，性价比不高。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "定期租赁的土地费用和解体准备金较高。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "作为定期租赁，价格偏高。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "价格比同等条件的永久产权公寓便宜约10%到15%。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "fact",
+        "description": "价格区间在 9090 万日元到 21990 万日元之间。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "第一期销售均价约为每平方米 550 万到 600 万日元。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "3LDK，70 平米左右，总价在 1.1 亿日元以上。",
+        "confidence_score": 0.8
+      }
+    ],
+    "other_information": [
+      {
+        "type": "inference",
+        "description": "靠近东京巨蛋，生活圈比较热闹。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "周边环境正在改善，将来会有更多商店和餐厅入驻。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "小学学区不错，但学位紧张。",
+        "confidence_score": 0.8
+      },
+      {
+        "type": "inference",
+        "description": "有直达巴士到新宿站。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "停车位紧张，许多居民需要在外面租用停车位。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "公共区域设计精美，共享设施丰富。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "由于靠近大学和医院，周边配套完善，生活便利。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "inference",
+        "description": "由于靠近印刷厂旧址，存在土壤污染的可能性，需要确认土壤调查结果和相关对策。",
+        "confidence_score": 0.6
+      },
+      {
+        "type": "inference",
+        "description": "柳町小学正在进行重建工程，未来学校容量将扩大。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "租赁年限为70年",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "inference",
+        "description": "由于是大型公寓，管理和运营成本较高，可能导致管理费上涨或服务质量下降",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "开发商为日铁兴和不动产。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "fact",
+        "description": "位于小石川四丁目，靠近小石川植物园。",
+        "confidence_score": 1.0
+      },
+      {
+        "type": "inference",
+        "description": "由于地处文教区，未来升值潜力较大。",
+        "confidence_score": 0.7
+      },
+      {
+        "type": "fact",
+        "description": "周边有超市、餐饮店、公园等生活配套设施。",
+        "confidence_score": 0.9
+      },
+      {
+        "type": "fact",
+        "description": "项目附近有多所大学，包括东京大学、御茶之水女子大学等。",
+        "confidence_score": 1.0
+      }
+    ]
+  }
+}
