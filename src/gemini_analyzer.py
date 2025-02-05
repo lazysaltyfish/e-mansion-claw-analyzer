@@ -101,8 +101,8 @@ def format_comments(comments):
         if isinstance(comment, dict) and 'id' in comment and 'text' in comment
     ]
     
-    # 按id排序
-    sorted_comments = sorted(valid_comments, key=lambda x: x['id'])
+    # 按id排序 (转换为整数)
+    sorted_comments = sorted(valid_comments, key=lambda x: int(x['id']))
     
     # 只保留最后3000条评论
     sorted_comments = sorted_comments[-3000:]
@@ -194,6 +194,7 @@ def analyze_comments(comments, prompt):
         "top_p": 0.95,
         "top_k": 40,
         "max_output_tokens": 8192,
+        "response_mime_type": "text/plain"
     }
 
     model = genai.GenerativeModel(

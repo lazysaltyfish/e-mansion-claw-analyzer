@@ -53,7 +53,7 @@ e-mansion claw & analyzer 是一个 Python 项目，旨在从 e-mansion 网站�
 要运行测试，请使用以下命令：
 
 ```bash
-pytest tests
+PYTHONPATH=. pytest tests
 ```
 
 ## 项目结构

@@ -74,17 +74,23 @@ def test_format_comments():
     comments = [
         {"id": 3, "text": "Third comment"},
         {"id": 1, "text": "First comment"},
-        {"id": 2, "text": "Second comment"}
+        {"id": 2, "text": "Second comment"},
+        {'id': '4401', 'text': '评论1'},
+        {'id': '440', "text": "评论2"},
+        {'id': '4402', 'text': '评论3'},
     ]
     
     # 调用 format_comments 函数
     formatted = format_comments(comments)
     
     # 验证结果
-    assert len(formatted) == 3
+    assert len(formatted) == 6  # 验证评论数量
     assert formatted[0] == "[1]:First comment"
     assert formatted[1] == "[2]:Second comment"
     assert formatted[2] == "[3]:Third comment"
+    assert formatted[3] == "[440]:评论2"   # 验证整数 ID 排序
+    assert formatted[4] == "[4401]:评论1"
+    assert formatted[5] == "[4402]:评论3"
 
 # 测试 format_comments 函数的评论限制
 def test_format_comments_limit():
