@@ -141,10 +141,8 @@ async def analyze_comments_async(comments, concurrent=5):
     tasks = []
     for i in range(concurrent):
         logging.debug(f"创建第{i+1}个分析任务")
-        loop = asyncio.get_event_loop()
-        with ThreadPoolExecutor() as pool:
-            task = loop.run_in_executor(pool, analyze_comments, formatted_comments, ANALYSIS_PROMPT)
-            tasks.append(task)
+        task = analyze_comments(formatted_comments, ANALYSIS_PROMPT)
+        tasks.append(task)
     
     # 并发执行所有任务
     try:
@@ -185,9 +183,9 @@ async def analyze_comments_async(comments, concurrent=5):
         save_error_context(MERGE_PROMPT, merged_json_str, error_msg)
         return json.dumps(merged_result, ensure_ascii=False, indent=2)
 
-def analyze_comments(comments, prompt):
+async def analyze_comments(comments, prompt):
     """
-    同步分析评论函数,由异步函数通过线程池调用
+    同步分析评论函数,由异步函数调用, 增加重试机制
     """
     generation_config = {
         "temperature": 1,
@@ -207,14 +205,23 @@ def analyze_comments(comments, prompt):
         "comments": comments,
     }
 
-    try:
-        response = model.generate_content(json.dumps(input_message))
-        return response.text
-    except Exception as e:
-        error_msg = f"Gemini API调用失败: {str(e)}"
-        logging.error(error_msg)
-        save_error_context(prompt, comments, error_msg)
-        return None
+    retries = 0
+    max_retries = 3
+    timeout = 5  # seconds
+
+    while retries < max_retries:
+        try:
+            response = await model.generate_content(json.dumps(input_message)) # 需要 await
+            return response.text
+        except Exception as e:
+            error_msg = f"Gemini API调用失败 (尝试次数: {retries + 1}/{max_retries}): {str(e)}"
+            logging.error(error_msg)
+            save_error_context(prompt, comments, error_msg) # 每次错误都保存上下文 # 移动到 retries += 1 之前
+            if retries < max_retries - 1:
+                logging.info(f"等待 {timeout} 秒后重试...")
+                await asyncio.sleep(timeout)
+            retries += 1
+    return None # 超过最大重试次数后返回 None
 
 def extract_json_from_markdown(markdown_text):
     """
