@@ -4,3 +4,4 @@ pytest-asyncio
 beautifulsoup4
 requests
 pytest-mock
+tqdm
