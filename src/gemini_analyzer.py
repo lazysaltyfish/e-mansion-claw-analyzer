@@ -11,6 +11,7 @@ from datetime import datetime
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# 修改后的 prompt，增加了对 timestamp, replies, images 的处理
 ANALYSIS_PROMPT = r"""# Role: 房地产评论分析师
 
 ## Profile
@@ -23,10 +24,22 @@ ANALYSIS_PROMPT = r"""# Role: 房地产评论分析师
 2. 置信度评分 (confidence_score) 的值必须在 0 到 1 之间。
 3. JSON 输出必须是合法且完整的 JSON 字符串,不包含任何其他信息。
 
+## Input
+
+JSON 数据，包含以下字段：
+
+- id: 评论 ID (字符串)
+- text: 评论文本 (字符串)
+- timestamp: 评论时间戳 (字符串, ISO 8601 格式)
+- replies: 回复的评论 ID 列表 (字符串列表)
+- images: 图片链接列表 (字符串列表)
+
 ## Workflow
 
-1. 接收包含用户评论的 JSON 数据作为输入,JSON 数据至少包含评论 ID 和评论文本。
-2. 分析评论文本,提取关于楼盘的关键信息。
+1. 接收包含用户评论的 JSON 数据作为输入。
+2. 分析评论文本，并结合 timestamp, replies, images 字段，提取关于楼盘的关键信息。
+    - 特别注意分析 replies 字段，理解评论之间的回复关系，这有助于理解上下文。
+    - 如果有 images 字段, 分析图片内容, 提取相关信息 (例如, 图片展示了房间的内部装修, 周围环境等)。
 3. 将提取的信息组织成以下结构的 JSON:
 
 ```json
@@ -51,11 +64,11 @@ ANALYSIS_PROMPT = r"""# Role: 房地产评论分析师
     ]
   }
 }
+```
 
 ## Output
 
 语言为中文的JSON string, 注意不是markdown格式
-```
 """
 
 MERGE_PROMPT = """请帮我合并如下JSON文件中的重复项。该文件是一个 JSON 格式的数据,其中`advantages`、`disadvantages`、`price`和`other_information`四个键值下分别对应一个数组。请合并这些数组中的重复项,判断重复的标准是`description`字段内容相同或高度相似,置信度请取平均值。请返回合并后的 JSON 数据。"""
@@ -201,11 +214,11 @@ async def analyze_comments(comments, prompt):
         model_name="gemini-2.0-pro-exp",
         generation_config=generation_config,
     )
-
     input_message = {
         "instruction": prompt,
         "comments": comments,
     }
+
 
     retries = 0
     max_retries = 3
@@ -218,7 +231,7 @@ async def analyze_comments(comments, prompt):
         except Exception as e:
             error_msg = f"Gemini API调用失败 (尝试次数: {retries + 1}/{max_retries}): {str(e)}"
             logging.error(error_msg)
-            save_error_context(prompt, comments, error_msg) # 每次错误都保存上下文 # 移动到 retries += 1 之前
+            save_error_context(prompt, comments, error_msg) # 每次错误都保存上下文
             if retries < max_retries - 1:
                 logging.info(f"等待 {timeout} 秒后重试...")
                 await asyncio.sleep(timeout)

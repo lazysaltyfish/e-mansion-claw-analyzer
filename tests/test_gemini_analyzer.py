@@ -59,28 +59,28 @@ def test_save_error_context(clean_error_logs):
 # 测试 load_comments 函数在正常情况下的行为
 def test_load_comments_success(tmp_path, mock_json_data):
     # 创建一个临时文件并写入模拟的 JSON 数据
-    test_data = [{"id": 1, "text": "Comment 1"}, {"id": 2, "text": "Comment 2"}]
+    test_data = [{"id": "1", "text": "Comment 1"}, {"id": "2", "text": "Comment 2"}]
     file = tmp_path / "comments.json"
     file.write_text(mock_json_data(test_data))
     # 调用 load_comments 函数加载评论数据
     comments = load_comments(str(file))
     # 断言返回了正确的评论数据
     assert len(comments) == 2
-    assert comments[0]["id"] == 1
+    assert comments[0]["id"] == "1"
     assert comments[0]["text"] == "Comment 1"
-    assert comments[1]["id"] == 2
+    assert comments[1]["id"] == "2"
     assert comments[1]["text"] == "Comment 2"
 
 # 测试 format_comments 函数的行为
 def test_format_comments():
-    # 测试数据
+     # 测试数据, 包含新的字段
     comments = [
-        {"id": 3, "text": "Third comment"},
-        {"id": 1, "text": "First comment"},
-        {"id": 2, "text": "Second comment"},
-        {'id': '4401', 'text': '评论1'},
-        {'id': '440', "text": "评论2"},
-        {'id': '4402', 'text': '评论3'},
+        {"id": "3", "text": "Third comment", "timestamp": "", "replies": [], "images": []},
+        {"id": "1", "text": "First comment", "timestamp": "", "replies": [], "images": []},
+        {"id": "2", "text": "Second comment", "timestamp": "", "replies": [], "images": []},
+        {'id': '4401', 'text': '评论1', "timestamp": "", "replies": [], "images": []},
+        {'id': '440', "text": "评论2", "timestamp": "", "replies": [], "images": []},
+        {'id': '4402', 'text': '评论3', "timestamp": "", "replies": [], "images": []},
     ]
     
     # 调用 format_comments 函数
@@ -88,18 +88,18 @@ def test_format_comments():
     
     # 验证结果
     assert len(formatted) == 6  # 验证评论数量
-    assert formatted[0] == "[1]:First comment"
-    assert formatted[1] == "[2]:Second comment"
-    assert formatted[2] == "[3]:Third comment"
-    assert formatted[3] == "[440]:评论2"   # 验证整数 ID 排序
-    assert formatted[4] == "[4401]:评论1"
-    assert formatted[5] == "[4402]:评论3"
+    assert formatted[0] == '[1]:First comment'
+    assert formatted[1] == '[2]:Second comment'
+    assert formatted[2] == '[3]:Third comment'
+    assert formatted[3] == '[440]:评论2'
+    assert formatted[4] == '[4401]:评论1'
+    assert formatted[5] == '[4402]:评论3'
 
 # 测试 format_comments 函数的评论限制
 def test_format_comments_limit():
     # 创建3500条评论
     comments = [
-        {"id": i, "text": f"Comment {i}"} 
+        {"id": str(i), "text": f"Comment {i}", "timestamp": "", "replies": [], "images": []}
         for i in range(1, 3501)
     ]
     
@@ -108,25 +108,25 @@ def test_format_comments_limit():
     
     # 验证结果
     assert len(formatted) == 3000  # 只保留最后3000条
-    assert formatted[0] == "[501]:Comment 501"  # 第一条应该是501
-    assert formatted[-1] == "[3500]:Comment 3500"  # 最后一条应该是3500
+    assert formatted[0] == '[501]:Comment 501'  # 第一条应该是501
+    assert formatted[-1] == '[3500]:Comment 3500'  # 最后一条应该是3500
 
 # 测试 format_comments 函数处理无效评论
 def test_format_comments_invalid():
     comments = [
-        {"id": 1, "text": "Valid comment"},
+        {"id": "1", "text": "Valid comment", "timestamp": "", "replies": [], "images": []},
         {"invalid": "No id or text"},
-        {"id": 2},  # 没有text
+        {"id": "2"},  # 没有text
         {"text": "No id"},  # 没有id
-        {"id": 3, "text": "Another valid"}
+        {"id": "3", "text": "Another valid", "timestamp": "", "replies": [], "images": []}
     ]
     
     formatted = format_comments(comments)
     
     # 只有有效的评论应该被包含
     assert len(formatted) == 2
-    assert formatted[0] == "[1]:Valid comment"
-    assert formatted[1] == "[3]:Another valid"
+    assert formatted[0] == '[1]:Valid comment'
+    assert formatted[1] == '[3]:Another valid'
 
 # 测试 load_comments 函数在处理不存在的文件时的行为
 def test_load_comments_file_not_found():
@@ -187,9 +187,9 @@ def test_merge_results_success(mock_json_data):
     result1 = """
 ```json
 {
-  "property_name": "Property A",
+  "property_name": "楼盘A",
   "information": {
-    "advantages": [{"type": "fact", "description": "Good location", "confidence_score": 0.9}],
+    "advantages": [{"type": "fact", "description": "交通便利", "confidence_score": 0.9}],
     "disadvantages": [],
     "price": [],
     "other_information": []
@@ -199,11 +199,11 @@ def test_merge_results_success(mock_json_data):
     result2 = """
 ```json
 {
-  "property_name": "Property B",
+  "property_name": "楼盘A",
   "information": {
     "advantages": [],
-    "disadvantages": [{"type": "fact", "description": "High price", "confidence_score": 0.8}],
-    "price": [{"type": "fact", "description": "1000 USD", "confidence_score": 0.9}],
+    "disadvantages": [{"type": "fact", "description": "价格高", "confidence_score": 0.8}],
+    "price": [{"type": "inference", "description": "均价10万", "confidence_score": 0.9}],
     "other_information": []
   }
 }
@@ -211,10 +211,10 @@ def test_merge_results_success(mock_json_data):
     # 调用 merge_results 函数合并结果
     merged_results = merge_results([result1, result2])
     # 验证合并后的结果是否符合预期
-    assert merged_results["property_name"] == "Property A"  # 第一个非空property_name
-    assert {"type": "fact", "description": "Good location", "confidence_score": 0.9} in merged_results["information"]["advantages"]
-    assert {"type": "fact", "description": "High price", "confidence_score": 0.8} in merged_results["information"]["disadvantages"]
-    assert {"type": "fact", "description": "1000 USD", "confidence_score": 0.9} in merged_results["information"]["price"]
+    assert merged_results["property_name"] == "楼盘A"  # 第一个非空property_name
+    assert {"type": "fact", "description": "交通便利", "confidence_score": 0.9} in merged_results["information"]["advantages"]
+    assert {"type": "fact", "description": "价格高", "confidence_score": 0.8} in merged_results["information"]["disadvantages"]
+    assert {"type": "inference", "description": "均价10万", "confidence_score": 0.9} in merged_results["information"]["price"]
 
 # 测试 merge_results 函数在处理空列表时的行为
 def test_merge_results_empty_list():

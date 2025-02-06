@@ -68,8 +68,39 @@ def scrape_comments(base_url, filename="comments.json", test_mode=False, test_ht
                     continue  # 跳过已存在的评论
 
                 comment_ids.add(comment_id)
-                comment_text = comment_div.find('div', class_='res-item-detail').find('p', itemprop='commentText').text.strip()
-                extracted_comments.append({'id': comment_id, 'text': comment_text})
+                comment_detail = comment_div.find('div', class_='res-item-detail')
+                comment_text = comment_detail.find('p', itemprop='commentText').text.strip()
+
+                # 提取发布时间
+                time_script = comment_detail.find('script')
+                if time_script:
+                    match = re.search(r"timeToSimple\('(.*?)'\)", time_script.string)
+                    if match:
+                        timestamp = match.group(1)
+                    else:
+                        timestamp = ""  # 如果找不到时间，则设置为空字符串
+                else:
+                    timestamp = ""
+
+                # 提取回复目标的ID
+                reply_to = []
+                for a_tag in comment_detail.find_all('a', href=True):
+                    match = re.search(r'/bbs/thread/\d+/res/(\d+)', a_tag['href'])
+                    if match:
+                        reply_to.append(match.group(1))
+
+                # 提取图片链接
+                images = []
+                for img_tag in comment_detail.find_all('img'):
+                    images.append(img_tag.get('src'))
+
+                extracted_comments.append({
+                    'id': comment_id,
+                    'text': comment_text,
+                    'timestamp': timestamp,
+                    'replies': reply_to,
+                    'images': images
+                })
                 new_comments_found = True  # 标记为找到新评论
 
         except requests.exceptions.HTTPError as e:
@@ -96,10 +127,21 @@ if __name__ == "__main__":
     parser.add_argument("action", choices=["scrape"], help="指定操作为 'scrape'")
     parser.add_argument("base_url", type=str, help="指定基础 URL")
     parser.add_argument("--filename", type=str, default="comments.json", help="指定输出文件名 (默认: comments.json)")
+    parser.add_argument("--test_mode", action="store_true", help="使用测试模式") # 添加 test_mode 参数
+    parser.add_argument("--test_html", type=str, default="", help="测试模式下使用的 HTML 文件路径") # 添加 test_html 参数
 
     args = parser.parse_args()
 
     if args.action == "scrape" and args.base_url:
-        scrape_comments(args.base_url, args.filename)
+        if args.test_mode:
+            # 测试模式下，读取 test_html 文件的内容
+            try:
+                with open(args.test_html, 'r', encoding='utf-8') as f:
+                    test_html_content = f.read()
+                scrape_comments(args.base_url, args.filename, test_mode=True, test_html=test_html_content)
+            except FileNotFoundError:
+                logging.error(f"测试文件 {args.test_html} 未找到。")
+        else:
+            scrape_comments(args.base_url, args.filename)
     else:
         logging.error("请指定操作和基础 URL: python scraper.py scrape <base_url> --filename <filename>")
