@@ -117,19 +117,19 @@ def format_comments(comments):
 
 async def analyze_comments_async(comments, concurrent=5):
     """
-    异步分析评论,支持并发请求
-    
+    异步分析评论,支持并发请求,每个请求之间间隔3秒
+
     Args:
         comments: 评论列表(包含id和text的字典列表)
         concurrent: 并发请求数量
-    
+
     Returns:
         合并后的分析结果
     """
     # 确保API密钥已设置
     if 'GEMINI_API_KEY' not in os.environ:
         raise ValueError("需要设置GEMINI_API_KEY环境变量")
-    
+
     api_key = os.environ['GEMINI_API_KEY']
     genai.configure(api_key=api_key)
 
@@ -143,7 +143,10 @@ async def analyze_comments_async(comments, concurrent=5):
         logging.debug(f"创建第{i+1}个分析任务")
         task = analyze_comments(formatted_comments, ANALYSIS_PROMPT)
         tasks.append(task)
-    
+        if i < concurrent - 1:  # 除了最后一个任务,每个任务之间等待3秒
+            logging.debug("等待3秒...")
+            await asyncio.sleep(3)
+
     # 并发执行所有任务
     try:
         results = await asyncio.gather(*tasks)
@@ -151,7 +154,7 @@ async def analyze_comments_async(comments, concurrent=5):
         logging.error(f"并发请求过程中发生错误: {str(e)}")
         save_error_context(ANALYSIS_PROMPT, formatted_comments, e)
         raise
-    
+
     # 合并结果
     merged_result = merge_results(results)
     if merged_result is None:
@@ -162,7 +165,7 @@ async def analyze_comments_async(comments, concurrent=5):
 
     # 将合并结果转换为字符串
     merged_json_str = json.dumps(merged_result, ensure_ascii=False)
-    
+
     # 使用同步函数进行最终合并
     try:
         # 直接调用异步函数进行最终合并
@@ -171,7 +174,7 @@ async def analyze_comments_async(comments, concurrent=5):
         logging.error(f"最终合并请求过程中发生错误: {str(e)}")
         save_error_context(MERGE_PROMPT, merged_json_str, e)
         raise
-    
+
     # 解析最终结果
     final_result_json = extract_json_from_markdown(final_result)
     if final_result_json:
@@ -195,7 +198,7 @@ async def analyze_comments(comments, prompt):
     }
 
     model = genai.GenerativeModel(
-        model_name="gemini-1.5-pro",
+        model_name="gemini-2.0-pro-exp",
         generation_config=generation_config,
     )
 
@@ -206,7 +209,7 @@ async def analyze_comments(comments, prompt):
 
     retries = 0
     max_retries = 3
-    timeout = 5  # seconds
+    timeout = 10  # seconds
 
     while retries < max_retries:
         try:
