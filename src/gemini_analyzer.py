@@ -9,9 +9,11 @@ from google.ai.generativelanguage_v1beta.types import content
 import logging
 from datetime import datetime
 
+from src.api_caller import GeminiAPIKeyPool, call_gemini_api
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# 修改后的 prompt，增加了对 timestamp, replies, images 的处理
+# 修改后的 prompt, 增加了对 timestamp, replies, images 的处理
 ANALYSIS_PROMPT = r"""# Role: 房地产评论分析师
 
 ## Profile
@@ -141,10 +143,10 @@ async def analyze_comments_async(comments, concurrent=5):
     """
     # 确保API密钥已设置
     if 'GEMINI_API_KEY' not in os.environ:
-        raise ValueError("需要设置GEMINI_API_KEY环境变量")
+        raise ValueError("需要设置GEMINI_API_KEYS环境变量")
 
-    api_key = os.environ['GEMINI_API_KEY']
-    genai.configure(api_key=api_key)
+    api_keys = os.environ['GEMINI_API_KEYS'].split(',')  # 从环境变量读取多个API密钥,以逗号分隔
+    api_key_pool = GeminiAPIKeyPool(api_keys)  # 创建密钥池
 
     # 格式化评论
     formatted_comments = format_comments(comments)
@@ -154,7 +156,7 @@ async def analyze_comments_async(comments, concurrent=5):
     tasks = []
     for i in range(concurrent):
         logging.debug(f"创建第{i+1}个分析任务")
-        task = analyze_comments(formatted_comments, ANALYSIS_PROMPT)
+        task = analyze_comments(formatted_comments, ANALYSIS_PROMPT, api_key_pool) # 传入api_key_pool
         tasks.append(task)
         if i < concurrent - 1:  # 除了最后一个任务,每个任务之间等待3秒
             logging.debug("等待3秒...")
@@ -198,9 +200,9 @@ async def analyze_comments_async(comments, concurrent=5):
         save_error_context(MERGE_PROMPT, merged_json_str, error_msg)
         return json.dumps(merged_result, ensure_ascii=False, indent=2)
 
-async def analyze_comments(comments, prompt):
+async def analyze_comments(comments, prompt, api_key_pool):
     """
-    同步分析评论函数,由异步函数调用, 增加重试机制
+    同步分析评论函数,由异步函数调用, 使用api_key_pool
     """
     generation_config = {
         "temperature": 1,
@@ -210,33 +212,15 @@ async def analyze_comments(comments, prompt):
         "response_mime_type": "text/plain"
     }
 
-    model = genai.GenerativeModel(
-        model_name="gemini-2.0-pro-exp",
-        generation_config=generation_config,
-    )
+    model_name = "gemini-2.0-pro-exp"  # 将模型名称提取出来
     input_message = {
         "instruction": prompt,
         "comments": comments,
     }
 
-
-    retries = 0
-    max_retries = 3
-    timeout = 10  # seconds
-
-    while retries < max_retries:
-        try:
-            response = await model.generate_content_async(json.dumps(input_message))
-            return response.text
-        except Exception as e:
-            error_msg = f"Gemini API调用失败 (尝试次数: {retries + 1}/{max_retries}): {str(e)}"
-            logging.error(error_msg)
-            save_error_context(prompt, comments, error_msg) # 每次错误都保存上下文
-            if retries < max_retries - 1:
-                logging.info(f"等待 {timeout} 秒后重试...")
-                await asyncio.sleep(timeout)
-            retries += 1
-    return None # 超过最大重试次数后返回 None
+    # 调用 call_gemini_api
+    response_text = await call_gemini_api(model_name, generation_config, input_message, api_key_pool, prompt, comments)
+    return response_text
 
 def extract_json_from_markdown(markdown_text):
     """
