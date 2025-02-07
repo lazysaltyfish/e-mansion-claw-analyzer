@@ -1,4 +1,3 @@
-import subprocess
 import re
 import sys
 import logging

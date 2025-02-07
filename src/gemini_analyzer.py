@@ -3,9 +3,6 @@ import json
 import argparse
 import re
 import asyncio
-from concurrent.futures import ThreadPoolExecutor
-import google.generativeai as genai
-from google.ai.generativelanguage_v1beta.types import content
 import logging
 from datetime import datetime
 

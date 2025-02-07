@@ -2,7 +2,6 @@ import pytest
 import json
 import os
 import shutil
-from datetime import datetime
 from src.gemini_analyzer import (
     load_comments,
     extract_json_from_markdown,
@@ -11,7 +10,6 @@ from src.gemini_analyzer import (
     save_error_context,
     analyze_comments  # 导入 analyze_comments
 )
-import asyncio
 from unittest.mock import AsyncMock
 
 # 用于测试的模拟 JSON 数据
@@ -224,7 +222,7 @@ def test_merge_results_empty_list():
     assert merged_results is None
 
 # 新增 analyze_comments 函数的单元测试
-from unittest.mock import AsyncMock, Mock
+from unittest.mock import AsyncMock
 
 # Mock API Key Pool
 class MockAPIKeyPool:

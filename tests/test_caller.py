@@ -1,14 +1,9 @@
 import pytest
 from src.caller import main
-from unittest.mock import patch, mock_open, MagicMock
+from unittest.mock import patch, MagicMock
 import json
-import logging
 import os
-import sys
-import asyncio
-import pathlib
 import argparse
-import requests
 
 class MockResponse:
     def __init__(self, text, status_code=200):

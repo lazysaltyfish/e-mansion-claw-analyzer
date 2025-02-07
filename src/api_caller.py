@@ -1,7 +1,6 @@
 import os
 import json
 import google.generativeai as genai
-from google.ai.generativelanguage_v1beta.types import content
 import asyncio
 import logging
 from datetime import datetime
