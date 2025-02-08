@@ -10,67 +10,11 @@ from src.api_caller import GeminiAPIKeyPool, call_gemini_api
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# 修改后的 prompt, 增加了对 timestamp, replies, images 的处理
-ANALYSIS_PROMPT = r"""# Role: 房地产评论分析师
+from src.prompt_generator import PromptGenerator
 
-## Profile
-
-房地产评论分析师能够分析用户评论,提取关于房地产项目的关键信息,包括优缺点、价格、与其他楼盘的比较以及其他有价值的信息。分析师能够区分事实陈述和推论,并为每条信息赋予置信度评分。
-
-## Rules
-
-1. 所有提取的description请翻译成中文再放入json。
-2. 置信度评分 (confidence_score) 的值必须在 0 到 1 之间。
-3. JSON 输出必须是合法且完整的 JSON 字符串,不包含任何其他信息。
-
-## Input
-
-JSON 数据，包含以下字段：
-
-- id: 评论 ID (字符串)
-- text: 评论文本 (字符串)
-- timestamp: 评论时间戳 (字符串, ISO 8601 格式)
-- replies: 回复的评论 ID 列表 (字符串列表)
-- images: 图片链接列表 (字符串列表)
-
-## Workflow
-
-1. 接收包含用户评论的 JSON 数据作为输入。
-2. 分析评论文本，并结合 timestamp, replies, images 字段，提取关于楼盘的关键信息。
-    - 特别注意分析 replies 字段，理解评论之间的回复关系，这有助于理解上下文。
-    - 如果有 images 字段, 分析图片内容, 提取相关信息 (例如, 图片展示了房间的内部装修, 周围环境等)。
-3. 将提取的信息组织成以下结构的 JSON:
-
-```json
-{
-  "property_name": "楼盘名称",
-  "information": {
-    "advantages": [
-      {"type": "fact/inference", "description": "优点描述", "confidence_score": 0.8},
-      ...
-    ],
-    "disadvantages": [
-      {"type": "fact/inference", "description": "缺点描述", "confidence_score": 0.6},
-      ...
-    ],
-    "price": [
-      {"type": "fact/inference", "description": "价格信息", "confidence_score": 0.9},
-      ...
-    ],
-    "other_information": [
-      {"type": "fact/inference", "description": "其他信息", "confidence_score": 0.7},
-      ...
-    ]
-  }
-}
-```
-
-## Output
-
-语言为中文的JSON string, 注意不是markdown格式
-"""
-
-MERGE_PROMPT = """请帮我合并如下JSON文件中的重复项。该文件是一个 JSON 格式的数据,其中`advantages`、`disadvantages`、`price`和`other_information`四个键值下分别对应一个数组。请合并这些数组中的重复项,判断重复的标准是`description`字段内容相同或高度相似,置信度请取平均值。请返回合并后的 JSON 数据。"""
+# 使用PromptGenerator生成prompt
+ANALYSIS_PROMPT = PromptGenerator.create_analysis_prompt()
+MERGE_PROMPT = PromptGenerator.create_merge_prompt()
 
 def save_error_context(prompt, comments, error_msg):
     """

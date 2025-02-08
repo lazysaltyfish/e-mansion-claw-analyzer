@@ -14,6 +14,7 @@ e-mansion claw & analyzer 是一个 Python 项目，旨在从 e-mansion 网站�
 *   **scraper.py**: 负责从指定 URL 抓取网页评论，并将评论数据保存为 JSON 文件。支持增量抓取，避免重复抓取已存在的评论。文件名包含从 URL 中提取的楼盘 ID。
 *   **check_comments.py**: 检查评论 JSON 文件中评论 ID 的连续性，找出缺失的评论 ID (此功能主要用于开发调试，一般用户无需使用)。
 *   **gemini_analyzer.py**: 负责加载评论 JSON 文件，调用 Google Gemini API 对评论进行分析，提取楼盘的优缺点、价格等信息，并将分析结果保存为 JSON 文件。使用合并提示合并分析结果。
+*   **prompt_generator.py**: 提供模板化的prompt生成功能，包含PromptTemplate类用于处理基础模板结构，以及PromptGenerator类用于生成特定类型的prompt（如分析评论和合并结果）。
 *   **output/analysis_results/analysis_comments_\*.json**: Gemini API 分析评论后生成的 JSON 结果文件，文件名包含楼盘ID和时间戳。
 *   **output/intermediate_results/comments_\*.json**:  `scraper.py`  抓取的原始评论 JSON 文件，文件名包含楼盘 ID。
 *   **urls.txt**: 包含待抓取 URL 列表的文件，每个 URL 占一行。
@@ -72,6 +73,11 @@ set PYTHONPATH=. && python -m pytest tests/test_gemini_analyzer.py -v
 set PYTHONPATH=. && python -m pytest tests/test_scraper.py -v
 ```
 
+或者, 如果您只想运行`prompt_generator.py`的测试:
+```bash
+set PYTHONPATH=. && python -m pytest tests/test_prompt_generator.py -v
+```
+
 ## 项目结构
 
 ```
@@ -85,6 +91,7 @@ property_claw/
 │   ├── caller.py
 │   ├── check_comments.py
 │   ├── gemini_analyzer.py
+│   ├── prompt_generator.py
 │   └── scraper.py
 ├── tests/
 │   ├── test_caller.py
