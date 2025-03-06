@@ -1,5 +1,8 @@
 import os
 import requests
+
+import requests_cache
+requests_cache.install_cache('property_claw_http', backend='sqlite', expire_after=3600)
 from bs4 import BeautifulSoup
 import json
 import re

@@ -5,3 +5,4 @@ beautifulsoup4
 requests
 pytest-mock
 tqdm
+requests-cache  # 新增HTTP缓存依赖
