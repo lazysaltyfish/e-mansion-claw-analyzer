@@ -125,7 +125,7 @@ async def analyze_comments_async(comments, concurrent=5):
     # 使用同步函数进行最终合并
     try:
         # 直接调用异步函数进行最终合并
-        final_result = await analyze_comments(merged_json_str, MERGE_PROMPT)
+        final_result = await analyze_comments(merged_json_str, MERGE_PROMPT, api_key_pool)
     except Exception as e:
         logging.error(f"最终合并请求过程中发生错误: {str(e)}")
         save_error_context(MERGE_PROMPT, merged_json_str, e)
